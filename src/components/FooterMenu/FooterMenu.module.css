@@ -1,0 +1,57 @@
+/* ----------------------------FOOTER---------------------------- */
+
+.footer {
+  margin-top: auto;
+  display: block;
+  padding-bottom: 20px;
+  z-index: 999;
+  position: relative;
+  /* overflow: hidden; */
+}
+
+.footerButtonList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footerButtonItem svg {
+  fill: #444456;
+}
+.footerButtonItem.center svg {
+  fill: var(--text-color);
+}
+.footerButtonItem.fourth svg {
+  stroke: #444456;
+}
+.footerButtonItem.active svg {
+  fill: var(--primary-color);
+}
+
+.footerButtonItem.fourth.active svg {
+  stroke: var(--primary-color);
+}
+
+.footerButtonItem.center {
+  background-color: var(--primary-color);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.footerButtonItem.center.active {
+  background-color: var(--text-color);
+}
+
+.footerButtonLink {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footerButtonLink.center {
+  width: 54px;
+  height: 54px;
+}

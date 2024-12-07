@@ -1,0 +1,79 @@
+/* ----------------------------HEADER---------------------------- */
+
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerMenuButtonWrap {
+  background-color: transparent;
+}
+
+.headerMenuButton {
+  width: 20px;
+  height: 15px;
+  position: relative;
+  background-color: transparent;
+  border: none;
+}
+
+.headerMenuButton span {
+  display: block;
+  width: 20px;
+  height: 3px;
+  border-radius: 5px;
+  margin-bottom: 4px;
+  background-color: var(--text-color);
+}
+.headerMenuButton.active span {
+  background-color: var(--primary-color);
+}
+.headerMenuButton::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 3px;
+  border-radius: 5px;
+  margin-bottom: 4px;
+  background-color: var(--text-color);
+}
+.headerMenuButton.active::before {
+  background-color: var(--primary-color);
+}
+.headerMenuButton::after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 3px;
+  border-radius: 5px;
+  background-color: var(--text-color);
+}
+.headerMenuButton.active::after {
+  background-color: var(--primary-color);
+}
+
+.headerUser-id {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.userIconWrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #313142;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.userIconWrap img {
+  object-fit: contain;
+}
+.userIconWrap img.hasPicture {
+  width: auto;
+  height: 100%;
+}
