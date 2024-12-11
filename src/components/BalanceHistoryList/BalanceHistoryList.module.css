@@ -1,0 +1,11 @@
+.historyListDate {
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: #8793a2;
+  margin-bottom: 15px;
+}
+
+.historyList {
+  margin-bottom: 32px;
+}

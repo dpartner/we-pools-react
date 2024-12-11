@@ -1,5 +1,5 @@
-import FooterMenu from "../../FooterMenu/FooterMenu";
-import AppBar from "../AppBar";
+import FooterMenu from "../FooterMenu/FooterMenu";
+import AppBar from "../AppBar/AppBar";
 import { Outlet } from "react-router-dom";
 
 const Layout = () => {

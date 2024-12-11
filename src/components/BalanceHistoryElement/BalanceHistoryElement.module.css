@@ -1,0 +1,52 @@
+.historyListItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 9px 17px;
+  border: 0.2px solid #23232e;
+  border-radius: 15px;
+  background-color: var(--card-bg-color);
+}
+
+.historyListItem:not(:last-child) {
+  margin-bottom: 9px;
+}
+
+.historyItemHeading {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+  margin-left: 15px;
+}
+
+.historyItemHeading h4 {
+  font-weight: 600;
+}
+
+.historyItemValue {
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  margin-left: auto;
+}
+.historyItemValue.buy {
+  color: #009e71;
+}
+.historyItemValue.sold {
+  color: #f6465d;
+}
+
+.historyItemCode {
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  margin-left: 5px;
+}
+.historyItemCode.buy {
+  color: #009e71;
+}
+.historyItemCode.sold {
+  color: #f6465d;
+}

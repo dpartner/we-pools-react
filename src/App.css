@@ -17,6 +17,15 @@ body {
   overflow: hidden;
 }
 
+#root {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  min-height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+}
+
 main {
   overflow: hidden;
   display: flex;
@@ -29,7 +38,7 @@ main {
   padding-top: 20px;
 }
 
-.section-dark {
+.sectionDark {
   background-color: var(--text-color);
 }
 
@@ -47,7 +56,7 @@ main {
   }
 }
 
-.primary-button {
+.primaryButton {
   border-radius: 100px;
   padding: 11px 20px;
   font-weight: 500;
@@ -58,42 +67,14 @@ main {
   outline: none;
 }
 
-.primary-button.deactive {
+.primaryButton.deactive {
   background: var(--text-secondary-color);
 }
 
-.loader-wrap {
-  position: absolute;
-  width: 100%;
-  height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(23, 23, 31, 0.9);
-  gap: 20px;
-}
-
-.loader-wrap.hidden {
-  display: none;
-}
-
-.loader-wrap img {
-  animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 /* ----------------------------HEADER---------------------------- */
 
-.header-container {
+.headerContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -101,11 +82,11 @@ main {
   align-items: center;
 }
 
-.header-menu-button-wrap {
+.headerMenuButtonWrap {
   background-color: transparent;
 }
 
-.header-menu-button {
+.headerMenuButton {
   width: 20px;
   height: 15px;
   position: relative;
@@ -113,7 +94,7 @@ main {
   border: none;
 }
 
-.header-menu-button span {
+.headerMenuButton span {
   display: block;
   width: 20px;
   height: 3px;
@@ -121,10 +102,10 @@ main {
   margin-bottom: 4px;
   background-color: var(--text-color);
 }
-.header-menu-button.active span {
+.headerMenuButton.active span {
   background-color: var(--primary-color);
 }
-.header-menu-button::before {
+.headerMenuButton::before {
   content: '';
   display: block;
   width: 20px;
@@ -133,10 +114,10 @@ main {
   margin-bottom: 4px;
   background-color: var(--text-color);
 }
-.header-menu-button.active::before {
+.headerMenuButton.active::before {
   background-color: var(--primary-color);
 }
-.header-menu-button::after {
+.headerMenuButton::after {
   content: '';
   display: block;
   width: 20px;
@@ -144,16 +125,16 @@ main {
   border-radius: 5px;
   background-color: var(--text-color);
 }
-.header-menu-button.active::after {
+.headerMenuButton.active::after {
   background-color: var(--primary-color);
 }
 
-.header-user-id {
+.headerUserId {
   font-weight: bold;
   font-size: 16px;
 }
 
-.user-icon-wrap {
+.userIconWrap {
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -163,10 +144,10 @@ main {
   align-items: center;
   overflow: hidden;
 }
-.user-icon-wrap img {
+.userIconWrap img {
   object-fit: contain;
 }
-.user-icon-wrap img.hasPicture {
+.userIconWrap img.hasPicture {
   width: auto;
   height: 100%;
 }
@@ -190,33 +171,33 @@ main {
   align-items: center;
 }
 
-.footer-button-item svg {
+.footerButtonItem svg {
   fill: #444456;
 }
-.footer-button-item.center svg {
+.footerButtonItem.center svg {
   fill: var(--text-color);
 }
-.footer-button-item.fourth svg {
+.footerButtonItem.fourth svg {
   stroke: #444456;
 }
-.footer-button-item.active svg {
+.footerButtonItem.active svg {
   fill: var(--primary-color);
 }
 
-.footer-button-item.fourth.active svg {
+.footerButtonItem.fourth.active svg {
   stroke: var(--primary-color);
 }
 
-.footer-button-item.center {
+.footerButtonItem.center {
   background-color: var(--primary-color);
   border-radius: 20px;
   overflow: hidden;
 }
-.footer-button-item.center.active {
+.footerButtonItem.center.active {
   background-color: var(--text-color);
 }
 
-.footer-button-link {
+.footerButtonLink {
   width: 30px;
   height: 30px;
   display: flex;
@@ -224,7 +205,7 @@ main {
   align-items: center;
 }
 
-.footer-button-link.center {
+.footerButtonLink.center {
   width: 54px;
   height: 54px;
 }
@@ -251,12 +232,12 @@ main {
   pointer-events: all;
 }
 
-.menu-heading {
+.menuHeading {
   text-align: center;
   margin-bottom: 33px;
 }
 
-.menu-user-info-wrap {
+.menuUserInfoWrap {
   width: 100%;
   padding: 12px 15px;
   display: flex;
@@ -268,8 +249,8 @@ main {
   margin-bottom: 52px;
 }
 
-.menu-user-icon-wrap,
-.menu-settings-item-icon-wrap {
+.menuUserIconWrap,
+.menuSettingsItemIconWrap {
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -281,25 +262,25 @@ main {
   margin-right: 10px;
 }
 
-.menu-user-icon-wrap img.hasPicture {
+.menuUserIconWrap img.hasPicture {
   width: auto;
   height: 100%;
 }
 
-.menu-user-content {
+.menuUserContent {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
 }
 
-.menu-user-title {
+.menuUserTitle {
   font-weight: 600;
   font-size: 14px;
   letter-spacing: 0.03em;
   margin-bottom: 4px;
 }
 
-.menu-user-balance {
+.menuUserBalance {
   font-weight: 500;
   font-size: 11px;
   letter-spacing: 0.03em;
@@ -307,7 +288,7 @@ main {
   text-transform: uppercase;
 }
 
-.menu-setting-list {
+.menuSettingList {
   width: 100%;
   padding: 14px 19px 14px 15px;
   display: flex;
@@ -316,7 +297,7 @@ main {
   background-color: var(--card-bg-color);
   border-radius: 15px;
 }
-.menu-setting-item {
+.menuSettingItem {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -325,21 +306,21 @@ main {
   background-color: var(--card-bg-color);
 }
 
-.menu-setting-item:not(:first-child) {
+.menuSettingItem:not(:first-child) {
   padding-top: 10px;
 }
 
-.menu-setting-item:not(:last-child) {
+.menuSettingItem:not(:last-child) {
   padding-bottom: 10px;
   border-bottom: 1px solid #23232e;
 }
 
-.menu-settings-item-heading {
+.menuSettingsItemHeading {
   font-weight: 600;
   font-size: 14px;
 }
 
-.menu-settings-item-button {
+.menuSettingsItemButton {
   width: 25px;
   height: 25px;
   border-radius: 100%;
@@ -350,7 +331,7 @@ main {
   margin-left: auto;
 }
 
-.menu-settings-item-button svg {
+.menuSettingsItemButton svg {
   fill: var(--text-color);
   pointer-events: none;
   transition: all 0.7s ease-in-out;
@@ -359,7 +340,7 @@ main {
 
 /* ----------------------------MENU INVITER----------------------- */
 
-.inv-link-backdrop {
+.invLinkBackdrop {
   background: rgba(28, 28, 40, 0.7);
   position: fixed;
   top: 0;
@@ -372,16 +353,16 @@ main {
   pointer-events: none;
 }
 
-.inv-link-backdrop.shown {
+.invLinkBackdrop.shown {
   opacity: 1;
   pointer-events: all;
 }
 
-.inv-link-backdrop.shown .inv-link-wrap {
+.invLinkBackdrop.shown .invLinkWrap {
   transform: translateY(0);
 }
 
-.inv-link-wrap {
+.invLinkWrap {
   width: 100%;
   position: absolute;
   left: 0;
@@ -397,10 +378,10 @@ main {
   transition: all 0.3s ease-in-out;
 }
 
-.inv-link-wrap .inv-img {
+.invLinkWrap .invImg {
   margin-bottom: 31px;
 }
-.inv-heading {
+.invHeading {
   font-weight: 700;
   font-size: 21px;
   letter-spacing: 0.01em;
@@ -408,7 +389,7 @@ main {
   color: var(--bg-color);
   margin-bottom: 20px;
 }
-.inv-desc {
+.invDesc {
   font-weight: 400;
   font-size: 12px;
   letter-spacing: 0.03em;
@@ -416,11 +397,11 @@ main {
   max-width: 252px;
   margin-bottom: 25px;
 }
-.inv-form {
+.invForm {
   width: 100%;
 }
 
-.inv-input {
+.invInput {
   width: 100%;
   font-size: 14px;
   padding: 14px 17px;
@@ -429,12 +410,12 @@ main {
   outline: transparent;
   margin-bottom: 150px;
 }
-.inv-input:focus,
-.inv-input:hover {
+.invInput:focus,
+.invInput:hover {
   border: 1px solid var(--primary-color);
 }
 
-.inv-notification {
+.invNotification {
   border: 1px solid #5b5b73;
   border-radius: 50px;
   background-color: var(--card-bg-color);
@@ -447,14 +428,14 @@ main {
   color: var(--approve-color);
   transition: all 0.5s ease-in-out;
 }
-.inv-notification.fail {
+.invNotification.fail {
   color: var(--disapprove-color);
 }
 
-.inv-notification.shown {
+.invNotification.shown {
   transform: translate(-50%, 150%);
 }
-.primary-button.inv {
+.primaryButton.inv {
   font-weight: 500;
   font-size: 16px;
   padding: 15px 20px;

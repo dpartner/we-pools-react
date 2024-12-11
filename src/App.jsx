@@ -1,27 +1,27 @@
 // import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import Layout from './components/AppBar/Layout/Layout'
+import Layout from './components/Layout/Layout'
 import BalancePage from './pages/BalancePage/BalancePage';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchUserApi } from './redux/users/operations';
-import { selectLoading, selectError } from './redux/users/selectors';
+// import { selectLoading, selectError } from './redux/users/selectors';
+// import DailyPage from './pages/DailyPage/DailyPage';
 
 function App() {
 
   const dispatch = useDispatch();
-  // const isLoading = useSelector(selectLoading);
-  // const isError = useSelector(selectError);
-  // useEffect(()=> {
-  //   dispatch(fetchUserApi(23456));
-  // }, [dispatch]);
+  useEffect(()=> {
+    dispatch(fetchUserApi(23456));
+  }, [dispatch]);
 
 
   return (
     <Routes>
       <Route path='/' element={<Layout/>}>
         <Route path='balance' element={<BalancePage />} />
+        {/* <Route path='daily' element={<DailyPage />} /> */}
       </Route>
     </Routes>
   );

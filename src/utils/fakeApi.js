@@ -1,4 +1,13 @@
-export async function fetchCoins() {
+async function delay (ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))};
+
+export async function fetchCoins(userId) {
+  
+  // userId, для того, чтобы подтягивать данные твоего юзера
+  console.log('befor delay');
+  await delay(1000);
+  console.log('after delay');
+
   // data = await fetch('api'); Запрос на твой api  за данными
   const data = coins;
   return data;
@@ -9,7 +18,9 @@ export async function fetchUser(userId) {
   const data = users.find(user => user.id === userId);
   return data;
 }
-export async function fetchHistory() {
+export async function fetchHistory(userId) {
+  // userId, для того, чтобы подтягивать данные твоего юзера
+  await delay(1000);
   // data = await fetch('api'); Запрос на твой api  за данными
   const data = history;
   return data;
@@ -70,7 +81,7 @@ const coins = [
     total: '13.52',
   },
   {
-    id: 1,
+    id: 4,
     name: 'Toncoin',
     symbolName: 'tonkoin.png',
     haveCoins: '3,47',
@@ -79,7 +90,7 @@ const coins = [
     total: '19,98',
   },
   {
-    id: 2,
+    id: 5,
     name: 'USD₮',
     symbolName: 'usdt.png',
     haveCoins: '5,47',
@@ -88,7 +99,7 @@ const coins = [
     total: '29.37',
   },
   {
-    id: 3,
+    id: 6,
     name: 'DOGS',
     symbolName: 'dogs.png',
     haveCoins: '6,47',

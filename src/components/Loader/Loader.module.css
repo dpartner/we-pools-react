@@ -1,0 +1,28 @@
+.loaderWrap {
+  position: absolute;
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(23, 23, 31, 0.9);
+  gap: 20px;
+}
+
+.loaderWrap.hidden {
+  display: none;
+}
+
+.loaderWrap img {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
