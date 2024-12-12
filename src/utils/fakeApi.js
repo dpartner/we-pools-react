@@ -1,15 +1,13 @@
 async function delay (ms) {
   return new Promise(resolve => setTimeout(resolve, ms))};
 
-export async function fetchCoins(userId) {
+export async function fetchTokens(userId) {
   
   // userId, для того, чтобы подтягивать данные твоего юзера
-  console.log('befor delay');
   await delay(1000);
-  console.log('after delay');
 
   // data = await fetch('api'); Запрос на твой api  за данными
-  const data = coins;
+  const data = tokens;
   return data;
 }
 
@@ -52,7 +50,7 @@ export async function fetchTaskList() {
   return data;
 }
 
-const coins = [
+const tokens = [
   {
     id: 1,
     name: 'Toncoin',

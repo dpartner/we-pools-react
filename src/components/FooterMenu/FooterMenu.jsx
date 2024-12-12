@@ -1,8 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import s from './FooterMenu.module.css';
 import clsx from 'clsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleHistoryOpen } from '../../redux/balance/slice';
+import { selectBalanceHistoryOpen } from '../../redux/balance/selectors';
 
 const FooterMenu = () => {
+  const dispatch = useDispatch();
+  const historyOpen = useSelector(selectBalanceHistoryOpen);
+
   return (
     <footer className={clsx(s.footer)}>
       <section className={clsx("section")}>
@@ -10,7 +16,7 @@ const FooterMenu = () => {
           <nav>
             <ul className={clsx(s.footerButtonList)}>
               <li className={clsx(s.footerButtonItem, s.active)}>
-                <NavLink to="/balance" className={clsx(s.footerButtonLink, s.closeHistory)} >
+                <NavLink to="/balance" className={clsx(s.footerButtonLink, s.closeHistory)}  onClick={()=> {historyOpen && dispatch(toggleHistoryOpen())}}>
                   <svg width="25" height="25">
                     <use
                       href="../../../public/symbol-defs.svg#icon-first-page"

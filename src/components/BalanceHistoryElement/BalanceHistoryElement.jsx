@@ -2,11 +2,11 @@ import s from "./BalanceHistoryElement.module.css";
 import clsx from "clsx";
 
 const BalanceHistoryElement = (
-    coinName,
+    {coinName,
     coinCode,
     symbolName,
     operation,
-    amount,
+    amount}
 ) => {
   let valueClass = 'buy';
   let valueSymbol = '+';

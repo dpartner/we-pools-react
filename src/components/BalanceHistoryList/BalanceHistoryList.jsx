@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import s from "./BalanceHistoryList.module.css";
-import clsx from "clsx";
 import { selectBalanceHistory } from "../../redux/balance/selectors";
 import BalanceHistoryElement from "../BalanceHistoryElement/BalanceHistoryElement";
 

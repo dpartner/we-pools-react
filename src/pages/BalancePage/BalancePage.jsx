@@ -2,33 +2,63 @@ import { useDispatch, useSelector } from 'react-redux';
 import s from './BalancePage.module.css'
 import clsx from 'clsx';
 import { selectGlobalLoading, selectUser } from '../../redux/users/selectors';
-import { useEffect } from 'react';
-import { fetchBalanceCoinsApi, fetchBalanceHistoryApi } from '../../redux/balance/operations';
-import BalanceCoinsList from '../../components/BalanceCoinsList/BalanceCoinsList';
+import { useEffect, useRef } from 'react';
+import { fetchBalanceTokensApi, fetchBalanceHistoryApi } from '../../redux/balance/operations';
+import BalanceTokensList from '../../components/BalanceTokensList/BalanceTokensList';
 import Loader from '../../components/Loader/Loader';
-import { selectBalanceEyeOpen } from '../../redux/balance/selectors';
-import { toggleEyeOpen } from '../../redux/balance/slice';
+import { selectBalanceEyeOpen, selectBalanceHistoryOpen, selectBalanceTokens} from '../../redux/balance/selectors';
+import { toggleEyeOpen, toggleHistoryOpen } from '../../redux/balance/slice';
 import BalanceHistoryList from '../../components/BalanceHistoryList/BalanceHistoryList';
+
+
 
 const BalancePage = () => {
   const user = useSelector(selectUser);
   const loading = useSelector(selectGlobalLoading);
+  const historyOpen = useSelector(selectBalanceHistoryOpen);
+  const tokensWrap = useRef();
+  const balanceTokensLoaded = useSelector(selectBalanceTokens);
+
   useEffect(()=> {
-    console.log(loading);
   }, [loading]);
   const eyeOpen = useSelector(selectBalanceEyeOpen);
   const dispatch = useDispatch();
   useEffect(()=>{
-    dispatch(fetchBalanceCoinsApi());
+    dispatch(fetchBalanceTokensApi());
+    dispatch(fetchBalanceHistoryApi());
     },[dispatch, ]);
-    useEffect(()=>{
-      dispatch(fetchBalanceHistoryApi());
-      },[dispatch, ]);
+
+    useEffect(() => {
+      if (balanceTokensLoaded) {
+
+        setTimeout(() => {
+          scroolTokensWrap();
+        }, 500);
+        // 500ms задержка
+      }
+    }, [balanceTokensLoaded]);
+    
+
+    function scroolTokensWrap() {
+      setTimeout(() => {
+        tokensWrap.current.scroll({
+          top: 40,
+          behavior: 'smooth',
+        });
+      }, 2000);
+      setTimeout(() => {
+        tokensWrap.current.scroll({
+          top: 0,
+          behavior: 'smooth',
+        });
+      }, 2500);
+      
+    }
 
   return (
     loading ? <Loader /> : <main>
     {loading && <h1>LOADING</h1>}
-    <section className={clsx("section", s.balanceSection )}>
+    <section className={clsx("section", s.balanceSection, historyOpen && s.hidden)}>
       <div className={clsx("container", s.r)}>
         <div className={clsx(s.balanceWrap, !loading && s.shown)}>
           <h2 className={clsx(s.balanceHeading)}>Total Balance</h2>
@@ -58,18 +88,18 @@ const BalancePage = () => {
         </div>
       </div>
     </section>
-    <section className={clsx("section", s.tokensSection )}>
+    <section className={clsx("section", s.tokensSection, historyOpen && s.hidden )}>
       <div className={clsx("container", s.tokensContainer)}>
         <div className={clsx(s.tokensHeadingWrap)}>
           <h2 className={clsx(s.tokensHeading)}>Tokens</h2>
-          <button className={clsx(s.tokensHistoryButton)}>History</button>
+          <button className={clsx(s.tokensHistoryButton)} onClick={()=>{dispatch(toggleHistoryOpen())}}>History</button>
         </div>
-        <div className={clsx(s.tokensListWrap, s.hidden, !loading && s.shown)}>
-          <BalanceCoinsList />
+        <div className={clsx(s.tokensListWrap, s.hidden, !loading && s.shown)} ref={tokensWrap}>
+          <BalanceTokensList />
         </div>
       </div>
     </section>
-    <section className={clsx("section", s.historySection, s.hidden)}>
+    <section className={clsx("section", s.historySection, !historyOpen && s.hidden)}>
       <div className={clsx("container")}>
           <BalanceHistoryList/>
       </div>

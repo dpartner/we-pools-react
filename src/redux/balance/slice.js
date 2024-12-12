@@ -1,12 +1,12 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit"
-import { fetchBalanceCoinsApi, fetchBalanceHistoryApi } from "./operations";
+import { fetchBalanceTokensApi, fetchBalanceHistoryApi } from "./operations";
 
 const initialState = {
   history: [],
-  coins: [],
+  tokens: [],
   loading: {
     history: false,
-    coins: false,
+    tokens: false,
   },
   eyeOpen: true,
   historyOpen: false,
@@ -20,7 +20,7 @@ const slice = createSlice({
       state.eyeOpen = !state.eyeOpen;
     },
     toggleHistoryOpen(state) {
-      state.eyeOpen = !state.eyeOpen;
+      state.historyOpen = !state.historyOpen;
     },
   },
   extraReducers: (builder) => {
@@ -32,15 +32,15 @@ const slice = createSlice({
     .addCase(fetchBalanceHistoryApi.pending, (state) => {
       state.loading.history = true;
     })
-    .addCase(fetchBalanceCoinsApi.fulfilled, (state, action) => {
-      state.coins = action.payload;  
-      state.loading.coins = false;
+    .addCase(fetchBalanceTokensApi.fulfilled, (state, action) => {
+      state.tokens = action.payload;  
+      state.loading.tokens = false;
 
     })
-    .addCase(fetchBalanceCoinsApi.pending, (state) => {
-      state.loading.coins = true;
+    .addCase(fetchBalanceTokensApi.pending, (state) => {
+      state.loading.tokens = true;
     })
-    .addMatcher(isAnyOf(fetchBalanceHistoryApi.rejected, fetchBalanceCoinsApi.rejected), (state, action)=> {
+    .addMatcher(isAnyOf(fetchBalanceHistoryApi.rejected, fetchBalanceTokensApi.rejected), (state, action)=> {
       state.loading = false;
       state.error = action.payload;
     })

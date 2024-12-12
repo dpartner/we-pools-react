@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchCoins, fetchHistory } from "../../utils/fakeApi";
+import { fetchTokens, fetchHistory } from "../../utils/fakeApi";
 
 export const fetchBalanceHistoryApi = createAsyncThunk('balance/fetchHistory', async(userId, thunkApi) => {
   try {
@@ -10,9 +10,9 @@ export const fetchBalanceHistoryApi = createAsyncThunk('balance/fetchHistory', a
   }
 });
 
-export const fetchBalanceCoinsApi = createAsyncThunk('balance/fetchCoins', async(userId, thunkApi) => {
+export const fetchBalanceTokensApi = createAsyncThunk('balance/fetchTokens', async(userId, thunkApi) => {
   try {
-    const coins = await fetchCoins(userId);
+    const coins = await fetchTokens(userId);
     
     return coins;
   } catch (error) {

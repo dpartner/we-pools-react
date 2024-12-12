@@ -1,7 +1,7 @@
-import s from './BalanceCoin.module.css';
+import s from './BalanceToken.module.css';
 import clsx from 'clsx';
 
-const BalanceCoin = ({
+const BalanceToken = ({
   name,
   symbolName,
   haveCoins,
@@ -38,4 +38,4 @@ const BalanceCoin = ({
 </li>;
 };
 
-export default BalanceCoin;
+export default BalanceToken;
