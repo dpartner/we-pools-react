@@ -8,10 +8,10 @@ const BalanceHistoryElement = (
     operation,
     amount}
 ) => {
-  let valueClass = 'buy';
+  let valueClass = s.buy;
   let valueSymbol = '+';
   if (operation === 'sold') {
-    valueClass = 'sold';
+    valueClass = s.sold;
     valueSymbol = '-';
   }
 
@@ -22,7 +22,7 @@ const BalanceHistoryElement = (
         <img src={`../../../img/${symbolName}`} width="32" height="32" alt="tonkoin" />
       </div>
       <div className={clsx(s.historyItemHeading)}>
-        <h4>${coinName}</h4>
+        <h4>{coinName}</h4>
         <span className={clsx(s.historyItemValue, valueClass)}>{valueSymbol} {amount}</span>
         <span className={clsx(s.historyItemCode, valueClass)}>{coinCode}</span>
       </div>

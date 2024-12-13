@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchUserApi } from './redux/users/operations';
 // import { selectLoading, selectError } from './redux/users/selectors';
-// import DailyPage from './pages/DailyPage/DailyPage';
+import DailyPage from './pages/DailyPage/DailyPage';
 
 function App() {
 
@@ -21,7 +21,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Layout/>}>
         <Route path='balance' element={<BalancePage />} />
-        {/* <Route path='daily' element={<DailyPage />} /> */}
+        <Route path='daily' element={<DailyPage />} />
       </Route>
     </Routes>
   );

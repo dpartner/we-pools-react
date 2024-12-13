@@ -1,0 +1,23 @@
+.upList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  gap: 12px;
+
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 0.5s 0.5s ease-in-out;
+}
+
+.upList.shown {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ----------Hide scroolbar---------- */
+.upList::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+  display: none;
+}

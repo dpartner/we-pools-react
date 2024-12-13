@@ -1,0 +1,217 @@
+/* --------------TG SECTION---------------- */
+
+.tgSection {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all 0.3s ease-in-out;
+}
+
+.tgSection.shown {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tgWrap {
+  border: 1px solid #23232e;
+  border-radius: 15px;
+  background-color: var(--card-bg-color);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 8px 17px;
+}
+.userIconWrap.daily {
+  margin-right: 10px;
+  min-width: 31px;
+  height: 31px;
+}
+.tgContent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.tgTextWrap {
+  /* margin-right: auto; */
+  width: 100%;
+}
+.tgTitle {
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+}
+
+.tgTitle::after {
+  content: "";
+  height: 0.5px;
+  width: 95%;
+  background-color: var(--text-secondary-color);
+  display: block;
+  margin-top: 1px;
+  opacity: 0.2;
+}
+
+.tgBalance {
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary-color);
+}
+
+.tgButtonWrap {
+  /* margin-left: auto; */
+  align-self: center;
+}
+
+.tgButton {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  background-color: rgba(161, 161, 161, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tgButton svg {
+  fill: var(--text-color);
+  pointer-events: none;
+  transition: all 0.7s ease-in-out;
+  transform: rotate(-90deg);
+}
+
+/* --------------WE BALANCE SECTION---------------- */
+
+.weBalanceSection {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all 0.3s 0.3s ease-in-out;
+}
+
+.weBalanceSection.shown {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.container.weBalance::after {
+  content: "";
+  height: 0.5px;
+  width: 100%;
+  background-color: var(--text-secondary-color);
+  display: block;
+  margin-top: 1px;
+  opacity: 0.2;
+  margin-top: 20px;
+}
+
+.weBalanceWrap h2 {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.weBalanceValueWrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.weBalanceValueIcon {
+  margin-right: 7px;
+}
+
+.weBalanceValue {
+  font-weight: 500;
+  font-size: 20px;
+  margin-right: 7px;
+}
+
+.weBalanceValue.up {
+  color: var(--approve-color);
+}
+
+.weBalanceValueButton {
+  font-weight: 500;
+  font-size: 10px;
+  text-decoration: underline;
+  background-color: transparent;
+  color: var(--text-secondary-color);
+  position: relative;
+  top: -3px;
+}
+
+/* --------------UPGRADE SECTION---------------- */
+
+.upgradeSection {
+  padding-top: 12px;
+}
+
+.containerUpgrade::after {
+  content: "";
+  height: 0.5px;
+  width: 100%;
+  background-color: var(--text-secondary-color);
+  display: block;
+  margin-top: 1px;
+  opacity: 0.2;
+  margin-top: 14px;
+}
+
+.upHeading {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 17px;
+}
+
+.upItemNotif {
+  position: absolute;
+  font-weight: 500;
+  font-size: 10px;
+  padding: 6px 10px;
+  border: 1px solid var(--text-secondary-color);
+  border-radius: 50px;
+  background-color: var(--card-bg-color);
+  color: var(--approve-color);
+  z-index: 999;
+  opacity: 0;
+  transition: none;
+  pointer-events: none;
+}
+
+.upItemNotif.shown {
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+/* --------------TASKS SECTION---------------- */
+
+.tskSection {
+  overflow: scroll;
+}
+
+.tskItemNotif {
+  position: absolute;
+  font-weight: 500;
+  font-size: 10px;
+  padding: 6px 10px;
+  border: 1px solid var(--text-secondary-color);
+  border-radius: 50px;
+  background-color: var(--card-bg-color);
+  color: var(--approve-color);
+  z-index: 999;
+  opacity: 0;
+  transition: none;
+  pointer-events: none;
+  /* display: none; */
+}
+
+.tskItemNotif.shown {
+  opacity: 1;
+  transition: all 1s ease-in-out;
+}

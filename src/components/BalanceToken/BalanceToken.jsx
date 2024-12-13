@@ -13,11 +13,11 @@ const BalanceToken = ({
     let changeSymbol = '';
     let upOrDownClass = '';
     if (changeCalc > 0) {
-      changeSymbol = '+';
-      upOrDownClass = 'up';
+      changeSymbol = ' +';
+      upOrDownClass = s.up;
     }
     if (changeCalc < 0) {
-      upOrDownClass = 'down';
+      upOrDownClass = s.down;
     }
 
   return <li className={clsx(s.tokensListItem)}>
@@ -30,8 +30,8 @@ const BalanceToken = ({
       <span>{haveCoins}</span>
     </div>
     <div className={clsx(s.tokensItemSummary)}>
-      <span className={clsx(s.tokensItemSummaryPrice)}>{price}</span> 
-      <span className={clsx(s.tokensItemSummary, s.status, upOrDownClass)}>{changeSymbol}{change}</span> 
+      <span className={clsx(s.tokensItemSummaryPrice)}>{price} </span> 
+      <span className={clsx(s.tokensItemSummaryStatus, upOrDownClass)}> {changeSymbol}{change}</span> 
       <span className={clsx(s.tokensItemSummarySum)}>$ {total}</span>
     </div>
   </div>

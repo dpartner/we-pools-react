@@ -10,6 +10,7 @@ const initialState = {
   },
   eyeOpen: true,
   historyOpen: false,
+  error: null,
 }
 
 const slice = createSlice({
