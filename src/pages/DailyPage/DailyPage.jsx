@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import {
   fetchDailyTasksApi,
   fetchDailyUpgradesApi,
+  fetchDailyWeBalanceApi,
 } from "../../redux/daily/operations";
 import { selectUser } from "../../redux/users/selectors";
 import {
@@ -12,24 +13,31 @@ import {
   selectDailyPageLoading,
   selectDailyTaskNotif,
   selectDailyUpgradeNotif,
+  selectDailyWeBalanceColor,
+  selectDailyWeBalanceValue,
 } from "../../redux/daily/selectors";
 import Loader from "../../components/Loader/Loader";
 import DailyUpgradesList from "../../components/DailyUpgradesList/DailyUpgradesList";
 import DailyTasksList from "../../components/DailyTasksList/DailyTasksList";
 import useDelayedShow from "../../utils/useDelayedShow";
-import { initWeBalanceCordinate } from "../../redux/daily/slice";
+import { initWeBalance } from "../../redux/daily/slice";
 
 const DailyPage = () => {
   const user = useSelector(selectUser);
+  const weBalanceValue = Number(useSelector(selectDailyWeBalanceValue));
+  const weBalanceColor = useSelector(selectDailyWeBalanceColor);
   const loading = useSelector(selectDailyPageLoading);
   const isError = useSelector(selectDailyError);
   const isShown = useDelayedShow(!loading, 50);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchDailyUpgradesApi(user.id));
-    dispatch(fetchDailyTasksApi(user.id));
-  }, [dispatch, user.id]);
+    if (user.id) {
+      dispatch(fetchDailyUpgradesApi(user.id));
+      dispatch(fetchDailyTasksApi(user.id));
+      dispatch(fetchDailyWeBalanceApi(user.id));
+    }
+  }, [dispatch, user]);
 
   //Animations-->
   const weBalanceValueRef = useRef();
@@ -42,10 +50,11 @@ const DailyPage = () => {
   useEffect(() => {
     if (weBalanceValueRef.current) {
       const top = weBalanceValueRef.current.getBoundingClientRect().top;
+
       const left = weBalanceValueRef.current.getBoundingClientRect().left;
-      dispatch(initWeBalanceCordinate({ top, left }));
+      dispatch(initWeBalance({ cordinate: { top, left } }));
     }
-  });
+  }, [dispatch]);
 
   return (
     <>
@@ -97,10 +106,10 @@ const DailyPage = () => {
                     />
                   </div>
                   <span
-                    className={clsx(s.weBalanceValue)}
+                    className={clsx(s.weBalanceValue, weBalanceColor && s.up)}
                     ref={weBalanceValueRef}
                   >
-                    {user.weBalance}
+                    {weBalanceValue.toLocaleString("ja-JP")}
                   </span>
                   <button className={clsx(s.weBalanceValueButton)}>
                     History
@@ -118,7 +127,11 @@ const DailyPage = () => {
                 className={clsx(s.upItemNotif, upgradeNotif.shown && s.shown)}
                 ref={upgradeNotifRef}
                 style={{
-                  transform: `translate(${upgradeNotif.top}px, ${upgradeNotif.left}px)`,
+                  transform: `translate(${
+                    upgradeNotif.shown ? upgradeNotif.translateX : 0
+                  }px, ${upgradeNotif.shown ? upgradeNotif.translateY : 0}px)`,
+                  top: `${upgradeNotif.top}px`,
+                  left: `${upgradeNotif.left}px`,
                 }}
               >
                 Upgraded
@@ -129,8 +142,18 @@ const DailyPage = () => {
           <section className={clsx("section", s.tskSection)}>
             <div className={clsx("container")}>
               <DailyTasksList />
-              <span className={clsx(s.tskItemNotif)} ref={taskNotifRef}>
-                Claimed
+              <span
+                className={clsx(s.tskItemNotif, taskNotif.shown && s.shown)}
+                ref={taskNotifRef}
+                style={{
+                  transform: `translate(${
+                    taskNotif.shown ? taskNotif.translateX : 0
+                  }px, ${taskNotif.shown ? taskNotif.translateY : 0}px)`,
+                  top: `${taskNotif.top}px`,
+                  left: `${taskNotif.left}px`,
+                }}
+              >
+                {taskNotif.text + "ed" || "Claimed "}
               </span>
             </div>
           </section>

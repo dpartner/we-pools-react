@@ -2,15 +2,19 @@ import { useDispatch, useSelector } from "react-redux";
 import s from "./DailyUpgradesList.module.css";
 import clsx from "clsx";
 import {
-  selectDailyHeaderHeight,
   selectDailyPageLoading,
   selectDailyUpgrades,
   selectDailyWeBalanceCordinate,
+  selectDailyWeBalanceValue,
 } from "../../redux/daily/selectors";
 import DailyUpgradeEl from "../DailyUpgradeEl/DailyUpgradeEl";
 import useDelayedShow from "../../utils/useDelayedShow";
-import { useEffect, useRef } from "react";
-import { setUpgradeNotif } from "../../redux/daily/slice";
+import { setUpgradeNotif, setWeBalanceColor } from "../../redux/daily/slice";
+import { delay } from "../../utils/delay";
+import {
+  deleteDailyUpgradeApi,
+  changeDailyWeBalanceApi,
+} from "../../redux/daily/operations";
 
 const DailyUpgradesList = () => {
   const loading = useSelector(selectDailyPageLoading);
@@ -19,80 +23,58 @@ const DailyUpgradesList = () => {
   const dispatch = useDispatch();
 
   //Animations-->
-  const headerHeight = useSelector(selectDailyHeaderHeight);
+
   const weBalanceCordinate = useSelector(selectDailyWeBalanceCordinate);
+  const weBalanceValue = useSelector(selectDailyWeBalanceValue);
 
   async function handleUpgrade(e) {
-    let left = e.target.getBoundingClientRect().left;
-    // let top = e.target.getBoundingClientRect().top - headerHeight;
-    let top = e.target.getBoundingClientRect().top;
-    console.log("event", left, top);
+    e.preventDefault();
+    if (e.target.localName === "li") {
+      let left = e.target.getBoundingClientRect().left;
+      let top = e.target.getBoundingClientRect().top;
+      // console.log("event", left, top);
 
-    dispatch(setUpgradeNotif({ left, top, shown: false }));
-    const targetCoordinateY = -weBalanceCordinate.top;
-    const targetCoordinateX = -weBalanceCordinate.left;
-    const timer = await setTimeout(() => {
+      dispatch(setUpgradeNotif({ left, top, shown: false }));
+      const targetCoordinateX = -(left - weBalanceCordinate.left + 30);
+      const targetCoordinateY = -(top - weBalanceCordinate.top - 13);
+      await delay(50);
+      console.log(weBalanceCordinate);
+
       console.log("target", targetCoordinateY, targetCoordinateX);
       dispatch(
         setUpgradeNotif({
-          top: targetCoordinateY,
-          left: targetCoordinateX,
+          translateX: targetCoordinateX,
+          translateY: targetCoordinateY,
           shown: true,
         })
       );
-    }, 50);
-
-    // domElements.upgradeNotif.style.left = left + "px";
-    // domElements.upgradeNotif.style.top = top + "px";
-    // const targetCoordinateY = -(top - weBalanceCordinate.top + headerHeight);
-    // const targetCoordinateY = weBalanceCordinate.top;
-    // const targetCoordinateX = weBalanceCordinate.left;
-    // console.log("target", targetCoordinateY, targetCoordinateX);
-
-    // console.log(targetCoordinateY);
-    // console.log(targetCoordinateX);
-
-    // dispatch(
-    //   setUpgradeNotif({
-    //     top: targetCoordinateY,
-    //     left: targetCoordinateX,
-    //     shown: true,
-    //   })
-    // );
-
-    // domElements.upgradeNotif.classList.add("shown");
-    // domElements.upgradeNotif.style.transform = `translate(${targetCoordinateX}px, ${targetCoordinateY}px)`;
-
-    // const balanceAddValue = Number(
-    //   e.target.dataset.action.replace(",", ".")
-    // ).toFixed(3);
-    // const weBalanceValue = Number(
-    //   domElements.weBalanceValue.textContent.replace(",", ".")
-    // ).toFixed(3);
-    // const sumBalanceValue = (
-    //   Number(balanceAddValue) + Number(weBalanceValue)
-    // ).toFixed(3);
-
-    // setTimeout(() => {
-    //   domElements.weBalanceValue.textContent = sumBalanceValue;
-    //   domElements.weBalanceValue.classList.add("up");
-    //   setTimeout(() => {
-    //     domElements.weBalanceValue.classList.remove("up");
-    //   }, 500);
-    //   domElements.upgradeNotif.classList.remove("shown");
-    //   domElements.upgradeNotif.style.removeProperty("transform");
-    //   e.target.classList.add("removed");
-    //   setTimeout(() => {
-    //     e.target.style.display = "none";
-    //   }, 500);
-    // }, 500);
+      await delay(500);
+      dispatch(setUpgradeNotif({ shown: false }));
+      dispatch(setWeBalanceColor(true));
+      const balanceAddValueNum = Number(e.target.dataset.action);
+      const weBalanceValueNum = Number(weBalanceValue);
+      const sumBalanceValue = balanceAddValueNum + weBalanceValueNum;
+      dispatch(changeDailyWeBalanceApi(sumBalanceValue));
+      await delay(200);
+      dispatch(setWeBalanceColor(false));
+      e.target.innerHTML = "";
+      e.target.style =
+        "max-width: 0; min-width: 0; scale: 0.01; padding: 0; border: none";
+      dispatch(deleteDailyUpgradeApi(Number(e.target.id)));
+      await delay(200);
+      e.target.style = "display: none";
+    }
   }
 
   return (
     <ul className={clsx(s.upList, isShown && s.shown)} onClick={handleUpgrade}>
-      {upgrades.map((upgrade) => (
-        <DailyUpgradeEl key={upgrade.id} {...upgrade} />
-      ))}
+      {upgrades.length === 0 ? (
+        <h5>No upgrades today</h5>
+      ) : (
+        upgrades.map((upgrade) => (
+          <DailyUpgradeEl key={upgrade.id} {...upgrade} />
+        ))
+      )}
     </ul>
   );
 };

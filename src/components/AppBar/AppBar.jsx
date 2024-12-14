@@ -1,24 +1,13 @@
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import s from "./AppBar.module.css";
 import clsx from "clsx";
-import { useEffect, useRef } from "react";
-import { addHeaderHeight } from "../../redux/daily/slice";
+import { selectUser } from "../../redux/users/selectors";
 
 const AppBar = () => {
-  const dispatch = useDispatch();
-  const headerRef = useRef();
-
-  useEffect(() => {
-    if (headerRef.current) {
-      const headerHeight =
-        headerRef.current.getBoundingClientRect().bottom -
-        headerRef.current.getBoundingClientRect().top;
-      dispatch(addHeaderHeight(headerHeight));
-    }
-  });
+  const user = useSelector(selectUser);
 
   return (
-    <header className={clsx("section", s.headerSection)} ref={headerRef}>
+    <header className={clsx("section", s.headerSection)}>
       <div className={clsx("container", s.headerContainer)}>
         <div className={clsx(s.headerMenuButtonWrap)}>
           <button className={clsx(s.headerMenuButton)}>
@@ -27,11 +16,19 @@ const AppBar = () => {
         </div>
         <div>
           <p className={clsx(s.headerUserId)}>
-            #user_<span>id</span>
+            #user_<span>{user.id}</span>
           </p>
         </div>
         <div className={clsx(s.userIconWrap)}>
-          <img src="../../../public/img/svg/user-icon.svg" alt="" />
+          {user.photoUrl ? (
+            <img
+              className={s.hasPicture}
+              src={`../../../public/${user.photoUrl}`}
+              alt=""
+            />
+          ) : (
+            <img src="../../../public/img/svg/user-icon.svg" alt="" />
+          )}
         </div>
       </div>
     </header>

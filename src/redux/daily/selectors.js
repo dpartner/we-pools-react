@@ -5,19 +5,26 @@ export const selectDailyTasks = (state) => state.daily.tasks;
 export const selectDailyUpgradesLoading = (state) =>
   state.daily.loading.upgrades;
 export const selectDailyTasksLoading = (state) => state.daily.loading.tasks;
+export const selectDailyWeBalanceLoading = (state) =>
+  state.daily.loading.weBalance;
+
 export const selectDailyError = (state) => state.daily.error;
 
 export const selectDailyPageLoading = createSelector(
-  [selectDailyUpgradesLoading, selectDailyTasksLoading],
-  (upgrades, tasks) => upgrades || tasks
+  [
+    selectDailyUpgradesLoading,
+    selectDailyTasksLoading,
+    selectDailyWeBalanceLoading,
+  ],
+  (upgrades, tasks, weBalance) => upgrades || tasks || weBalance
 );
 
 export const selectDailyWeBalanceCordinate = (state) =>
-  state.daily.weBalanceCordinate;
-export const selectDailyHeaderHeight = (state) => state.daily.headerHeight;
-export const selectDailyUpgradeNotif = (state) => {
-  console.log(state.daily.upgradeNotif);
+  state.daily.weBalance.cordinate;
+export const selectDailyWeBalanceValue = (state) => state.daily.weBalance.value;
+export const selectDailyWeBalanceColor = (state) =>
+  state.daily.weBalance.updaytingColor;
 
-  return state.daily.upgradeNotif;
-};
+export const selectDailyUpgradeNotif = (state) => state.daily.upgradeNotif;
 export const selectDailyTaskNotif = (state) => state.daily.taskNotif;
+export const selectDailyFirstLoad = (state) => state.daily.firstLoad;

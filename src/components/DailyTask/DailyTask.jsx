@@ -4,7 +4,14 @@ import clsx from "clsx";
 import { selectDailyTasksLoading } from "../../redux/daily/selectors";
 import useDelayedShow from "../../utils/useDelayedShow";
 
-const DailyTask = ({ delay, nameTask, buttonName, value }) => {
+const DailyTask = ({
+  id,
+  delay,
+  nameTask,
+  buttonName,
+  value,
+  buttonStatus,
+}) => {
   const loading = useSelector(selectDailyTasksLoading);
   const isShown = useDelayedShow(!loading, 50);
 
@@ -14,7 +21,13 @@ const DailyTask = ({ delay, nameTask, buttonName, value }) => {
       style={{ transitionDelay: `${delay}ms` }}
     >
       <p className={clsx(s.tskItemName)}>{nameTask}</p>
-      <button type="button" className={clsx(s.tskItemBtn)} data-value={value}>
+      <button
+        type="button"
+        className={clsx(s.tskItemBtn, !buttonStatus && s.disabled)}
+        data-value={value}
+        id={id}
+        disabled={!buttonStatus}
+      >
         {buttonName}
       </button>
     </li>

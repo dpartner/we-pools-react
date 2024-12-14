@@ -1,6 +1,4 @@
-async function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+import { delay } from "./delay";
 
 export async function fetchTokens(userId) {
   // userId, для того, чтобы подтягивать данные твоего юзера
@@ -30,9 +28,10 @@ export async function fetchPools() {
 export async function fetchDailyUpgrades(userId) {
   // data = await fetch('api'); Запрос на твой api  за данными
   await delay(500); //потом удалишь
-  const data = dailyUpgrade;
-  return data;
+  const data = dailyUpgrade.find((user) => user.id === userId);
+  return data.arr;
 }
+
 export async function fetchDailyTasks(userId) {
   // data = await fetch('api'); Запрос на твой api  за данными
   await delay(500); //потом удалишь
@@ -115,7 +114,7 @@ const users = [
     email: "john.doe@example.com",
     balance: "23567",
     weBalance: "55000",
-    photoUrl: "../img/user-photo.png",
+    photoUrl: "img/user-photo.png",
     coins: [
       { code: "near", value: "4.25" },
       { code: "ton", value: "2.37" },
@@ -127,7 +126,7 @@ const users = [
     email: "sydney.swe@example.com",
     balance: "12567",
     weBalance: "155000",
-    photoUrl: "../img/user-photo.png",
+    photoUrl: "img/user-photo.png",
     coins: [
       { code: "near", value: "4.25" },
       { code: "ton", value: "2.37" },
@@ -304,52 +303,57 @@ const pools = [
 
 const dailyUpgrade = [
   {
-    id: 1,
-    nameUp: "Daily Check",
-    value: "6,000",
-    lvl: "3",
-  },
-  {
-    id: 2,
-    nameUp: "Week Check",
-    value: "4,450",
-    lvl: "2",
-  },
-  {
-    id: 3,
-    nameUp: "Bonus plus",
-    value: "8,300",
-    lvl: "3",
-  },
-  {
-    id: 4,
-    nameUp: "Daily Check",
-    value: "3,230",
-    lvl: "2",
-  },
-  {
-    id: 5,
-    nameUp: "Daily Check",
-    value: "7,200",
-    lvl: "4",
-  },
-  {
-    id: 6,
-    nameUp: "Daily Check",
-    value: "6,000",
-    lvl: "3",
-  },
-  {
-    id: 7,
-    nameUp: "Daily Check",
-    value: "6,000",
-    lvl: "3",
-  },
-  {
-    id: 8,
-    nameUp: "Daily Check",
-    value: "6,000",
-    lvl: "3",
+    id: 23456,
+    arr: [
+      {
+        id: 1,
+        nameUp: "Daily Check",
+        value: "6000",
+        lvl: "3",
+      },
+      {
+        id: 2,
+        nameUp: "Week Check",
+        value: "4450",
+        lvl: "2",
+      },
+      {
+        id: 3,
+        nameUp: "Bonus plus",
+        value: "8300",
+        lvl: "3",
+      },
+      {
+        id: 4,
+        nameUp: "Daily Check",
+        value: "3230",
+        lvl: "2",
+      },
+      {
+        id: 5,
+        nameUp: "Daily Check",
+        value: "7200",
+        lvl: "4",
+      },
+      {
+        id: 6,
+        nameUp: "Daily Check",
+        value: "6000",
+        lvl: "3",
+      },
+      {
+        id: 7,
+        nameUp: "Daily Check",
+        value: "6000",
+        lvl: "3",
+      },
+      {
+        id: 8,
+        nameUp: "Daily Check",
+        value: "6000",
+        lvl: "3",
+      },
+    ],
   },
 ];
 
@@ -359,42 +363,42 @@ const dailyTasks = [
     nameTask: "Daily Check",
     buttonName: "Claim",
     buttonStatus: true,
-    value: "3,230",
+    value: "3230",
   },
   {
     id: 2,
     nameTask: "Daily Transaction",
     buttonName: "Send",
     buttonStatus: true,
-    value: "4,870",
+    value: "4870",
   },
   {
     id: 3,
     nameTask: "Daily Friends",
     buttonName: "Claim",
     buttonStatus: false,
-    value: "5,350",
+    value: "5350",
   },
   {
     id: 4,
     nameTask: "Week Transaction",
     buttonName: "Send",
     buttonStatus: true,
-    value: "2,430",
+    value: "2430",
   },
   {
     id: 5,
     nameTask: "Week Friends",
     buttonName: "Claim",
     buttonStatus: false,
-    value: "1,230",
+    value: "1230",
   },
   {
     id: 6,
     nameTask: "Daily Check",
     buttonName: "Claim",
     buttonStatus: true,
-    value: "3,230",
+    value: "3230",
   },
 ];
 
