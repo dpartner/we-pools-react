@@ -66,7 +66,7 @@ const DailyPage = () => {
           <section className={clsx("section", s.tgSection, isShown && s.shown)}>
             <div className={clsx("container")}>
               <div className={clsx(s.tgWrap)}>
-                <div className={clsx(s.userIconWrap, s.daily)}>
+                <div className={clsx("userIconWrap", s.userIconWrapDaily)}>
                   <img src="../img/svg/user-icon.svg" alt="" />
                 </div>
                 <div className={clsx(s.tgContent)}>

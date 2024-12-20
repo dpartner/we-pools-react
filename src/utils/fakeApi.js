@@ -2,7 +2,7 @@ import { delay } from "./delay";
 
 export async function fetchTokens(userId) {
   // userId, для того, чтобы подтягивать данные твоего юзера
-  await delay(500); //потом удалишь
+  await delay(50); //потом удалишь
   // data = await fetch('api'); Запрос на твой api  за данными
   const data = tokens;
   return data;
@@ -15,26 +15,35 @@ export async function fetchUser(userId) {
 }
 export async function fetchHistory(userId) {
   // userId, для того, чтобы подтягивать данные твоего юзера
-  await delay(500); //потом удалишь
+  await delay(50); //потом удалишь
   // data = await fetch('api'); Запрос на твой api  за данными
   const data = history;
   return data;
 }
-export async function fetchPools() {
+export async function fetchWePools(userId) {
+  // userId, для того, чтобы подтягивать данные твоего юзера
+  await delay(50); //потом удалишь
   // data = await fetch('api'); Запрос на твой api  за данными
   const data = pools;
   return data;
 }
+export async function fetchMyPools(userId) {
+  // userId, для того, чтобы подтягивать данные твоего юзера
+  await delay(50); //потом удалишь
+  // data = await fetch('api'); Запрос на твой api  за данными
+  const data = myPools;
+  return data;
+}
 export async function fetchDailyUpgrades(userId) {
   // data = await fetch('api'); Запрос на твой api  за данными
-  await delay(500); //потом удалишь
+  await delay(50); //потом удалишь
   const data = dailyUpgrade.find((user) => user.id === userId);
   return data.arr;
 }
 
 export async function fetchDailyTasks(userId) {
   // data = await fetch('api'); Запрос на твой api  за данными
-  await delay(500); //потом удалишь
+  await delay(50); //потом удалишь
   const data = dailyTasks;
   return data;
 }
@@ -46,6 +55,8 @@ export async function fetchFriendList() {
 }
 export async function fetchTaskList() {
   // data = await fetch('api'); Запрос на твой api  за данными
+  await delay(50); //потом удалишь
+
   const data = taskList;
   return data;
 }
@@ -224,81 +235,126 @@ const pools = [
     coinName: "Toncoin",
     coinCode: "TON",
     symbolName: "tonkoin.png",
-    value: "10",
+    aprValue: "10",
     status: "approve",
     days: "14",
-    balance: "15.55",
+    amount: "0.005",
+    claimableAmount: "0.001470",
+    dailyInc: "0.00005",
+    expDate: "24.12.2024",
   },
   {
     id: 2,
     coinName: "Toncoin",
     coinCode: "TON",
     symbolName: "tonkoin.png",
-    value: "50",
+    aprValue: "12",
     status: "approve",
     days: "30",
-    balance: "15.55",
+    amount: "0.1",
+    claimableAmount: "0.002",
+    dailyInc: "0.0001",
+    expDate: "15.01.2025",
   },
   {
     id: 3,
     coinName: "DOGS",
     coinCode: "DOGS",
     symbolName: "dogs.png",
-    value: "15",
+    aprValue: "8",
     status: "disapprove",
     days: "14",
-    balance: "5.47",
+    amount: "0.03",
+    claimableAmount: "0.0008",
+    dailyInc: "0.00002",
+    expDate: "10.11.2024",
   },
   {
     id: 4,
     coinName: "USD₮",
     coinCode: "USDT",
     symbolName: "usdt.png",
-    value: "25",
+    aprValue: "5",
     status: "approve",
     days: "30",
-    balance: "12.35",
+    amount: "0.5",
+    claimableAmount: "0.01",
+    dailyInc: "0.0001",
+    expDate: "01.12.2025",
   },
   {
     id: 5,
     coinName: "DOGS",
     coinCode: "DOGS",
     symbolName: "dogs.png",
-    value: "15",
+    aprValue: "9",
     status: "approve",
     days: "30",
-    balance: "5.47",
+    amount: "0.02",
+    claimableAmount: "0.0005",
+    dailyInc: "0.00003",
+    expDate: "20.12.2024",
   },
   {
     id: 6,
     coinName: "Toncoin",
     coinCode: "TON",
     symbolName: "tonkoin.png",
-    value: "10",
+    aprValue: "11",
     status: "approve",
     days: "14",
-    balance: "15.55",
+    amount: "0.07",
+    claimableAmount: "0.0012",
+    dailyInc: "0.00004",
+    expDate: "30.11.2024",
   },
   {
     id: 7,
     coinName: "Toncoin",
     coinCode: "TON",
     symbolName: "tonkoin.png",
-    value: "50",
+    aprValue: "13",
     status: "approve",
     days: "30",
-    balance: "15.55",
+    amount: "0.2",
+    claimableAmount: "0.003",
+    dailyInc: "0.00015",
+    expDate: "05.01.2025",
   },
   {
     id: 8,
     coinName: "DOGS",
     coinCode: "DOGS",
     symbolName: "dogs.png",
-    value: "15",
+    aprValue: "7",
     status: "disapprove",
     days: "14",
-    balance: "5.47",
+    amount: "0.01",
+    claimableAmount: "0.0003",
+    dailyInc: "0.00001",
+    expDate: "15.11.2024",
   },
+];
+
+const myPools = [
+  // {
+  //   id: 1,
+  //   coinName: "Toncoin",
+  //   coinCode: "TON",
+  //   symbolName: "tonkoin.png",
+  //   totalStaked: "9900",
+  //   stakedAmount: "839",
+  //   claimableAmount: "16",
+  // },
+  // {
+  //   id: 2,
+  //   coinName: "Toncoin",
+  //   coinCode: "TON",
+  //   symbolName: "tonkoin.png",
+  //   totalStaked: "9900",
+  //   stakedAmount: "839",
+  //   claimableAmount: "16",
+  // },
 ];
 
 const dailyUpgrade = [
@@ -405,7 +461,7 @@ const dailyTasks = [
 const friendList = [
   {
     id: 11245,
-    name: "John Wick",
+    name: "Sydney Sweeney",
     coins: [
       { code: "near", value: "4.25" },
       { code: "ton", value: "2.37" },
@@ -440,7 +496,7 @@ const friendList = [
     photoUrl: "../img/user-photo.png",
   },
   {
-    id: 11245,
+    id: 11335,
     name: "John Wick",
     coins: [
       { code: "near", value: "2.75" },

@@ -1,0 +1,71 @@
+.tasksCaruselItem {
+  min-width: 100%;
+  max-height: calc(100dvh - 311px);
+  align-self: flex-start;
+  overflow: scroll;
+  /* overflow-y: scroll; */
+}
+
+.tListItem {
+  border-bottom: 1px solid #23232e;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 22px 0 17px;
+}
+.tListItem:first-child {
+  padding-top: 0;
+}
+
+.userIconWrapT {
+  margin-right: 10px;
+  min-width: 35px;
+  height: 35px;
+}
+
+.userIconWrapT.hasPicture img {
+  width: auto;
+  height: 100%;
+}
+
+.tContent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.tTextWrap {
+  /* margin-right: auto; */
+  width: 100%;
+}
+.tTitle {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+}
+
+.tBalance {
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary-color);
+  text-transform: uppercase;
+}
+
+.tItemBtn {
+  font-weight: 500;
+  font-size: 10px;
+  padding: 6px 10px;
+  border-radius: 100px;
+  min-width: 49px;
+  box-shadow: 1px 2px 0 0 rgba(173, 111, 255, 0.21);
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+.tItemBtn.noActive {
+  box-shadow: none;
+  background-color: transparent;
+}

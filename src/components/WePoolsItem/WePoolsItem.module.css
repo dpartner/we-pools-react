@@ -1,0 +1,152 @@
+.poolsListItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--card-bg-color);
+  border: 1px solid #6437a0;
+  border-radius: 15px;
+  padding: 11px 17px;
+
+  -webkit-transition: height 1s ease-in;
+  -moz-transition: height 1s ease-in;
+  -o-transition: height 1s ease-in;
+  -ms-transition: height 1s ease-in;
+  transition: height 1s ease-in-out;
+  height: 55px;
+  overflow: hidden;
+}
+
+.poolsListItem:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.poolsListItem.shown {
+  height: 240px;
+}
+
+.poolsListIconWrap {
+  margin-right: 8px;
+}
+
+.poolsListItemValuesWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.poolsItemHeading {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+}
+.poolsItemHeading h4 {
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.poolsItemHeadingApr {
+  font-weight: 600;
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.poolsItemHeadingApr.approve {
+  color: var(--approve-color);
+}
+.poolsItemHeadingApr.dis {
+  color: var(--disapprove-color);
+}
+
+.poolsItemHeadingDays {
+  font-weight: 600;
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.poolsItemHeadingButton {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  background-color: rgba(161, 161, 161, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.poolsItemHeadingButton svg {
+  fill: var(--text-color);
+  pointer-events: none;
+  transition: all 0.7s ease-in-out;
+}
+
+.poolsItemHeadingButton.open svg {
+  transform: rotate(180deg);
+}
+
+.poolsItemDetailsWrap {
+  margin-top: 20px;
+  width: 100%;
+}
+.poolsItemDetailsHeading {
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  color: #a5a5a5;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 16px;
+}
+.poolsItemDetailsHeading p {
+  margin-right: auto;
+}
+.poolsItemDetailsValue {
+  margin-right: 4px;
+}
+
+.poolsInputForm {
+  position: relative;
+}
+
+.poolsItemDetailsInput {
+  border: 1px solid #a5a5a5;
+  border-radius: 9px;
+  padding: 13px 14px 10px;
+  /* height: 38px; */
+  width: 100%;
+  background-color: transparent;
+  outline: var(--primary-color);
+  color: var(--text-color);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  margin-bottom: 23px;
+}
+
+.poolsItemDetailsInput:hover,
+.poolsItemDetailsInput:focus {
+  border: 1px solid var(--primary-color);
+}
+
+.poolsItemDetailsInputMaxButton {
+  background-color: transparent;
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  color: var(--text-color);
+}
+.poolsItemDetailsButtonWrap {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+.poolsItemDetailsButton {
+  flex-basis: calc((100% - 30px) / 2);
+}

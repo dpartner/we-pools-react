@@ -1,0 +1,66 @@
+.buttonSection {
+  padding: 0 0 20px;
+}
+
+.weImgWrap {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.weImgWrap img {
+  max-width: 165px;
+  opacity: 0;
+  transition: all 1s 0.5s ease-in-out;
+}
+
+.weImgWrap img.shown {
+  opacity: 1;
+}
+
+.weHeadingButtonWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.weButton {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text-secondary-color);
+  letter-spacing: 0.03em;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+.weButton:not(:last-child) {
+  margin-right: 52px;
+}
+.weButton.active {
+  font-size: 17px;
+  color: var(--text-color);
+}
+
+/* .poolsSection {
+  overflow: scroll;
+} */
+
+.poolsContainer {
+  overflow: hidden;
+  position: relative;
+}
+
+.poolsListsWrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  column-gap: 16px;
+  transform: translateX(0);
+  transition: all 0.5s ease-in-out;
+  width: auto;
+  position: relative;
+  top: 0;
+  left: 0;
+}

@@ -55,7 +55,7 @@ const FooterMenu = () => {
                 )}
               >
                 <NavLink
-                  to="/we-pools"
+                  to="/pools"
                   className={clsx(s.footerButtonLink, s.center)}
                 >
                   <svg width="35" height="35">

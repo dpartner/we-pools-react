@@ -1,0 +1,52 @@
+.flListItem {
+  border-bottom: 1px solid #23232e;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 9px 0;
+}
+
+.flListItem:first-child {
+  padding-top: 0;
+}
+
+.flListItem:last-child {
+  padding-bottom: 0;
+}
+
+.userIconWrapFl {
+  margin-right: 10px;
+  min-width: 35px;
+  height: 35px;
+}
+
+.userIconWrapFl.hasPicture img {
+  width: auto;
+  height: 100%;
+}
+
+.flContent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.flTextWrap {
+  /* margin-right: auto; */
+  width: 100%;
+}
+.flTitle {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+}
+
+.flBalance {
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary-color);
+  text-transform: uppercase;
+}

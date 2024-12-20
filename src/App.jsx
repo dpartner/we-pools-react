@@ -8,6 +8,10 @@ import { useEffect } from "react";
 import { fetchUserApi } from "./redux/users/operations";
 // import { selectLoading, selectError } from './redux/users/selectors';
 import DailyPage from "./pages/DailyPage/DailyPage";
+import PoolsPage from "./pages/PoolsPage/PoolsPage";
+import InvitePage from "./pages/InvitePage/InvitePage";
+import RefLinkWrap from "./components/refLinkWrap/refLinkWrap";
+import TasksPage from "./pages/TasksPage/TasksPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,12 +21,18 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route path="balance" element={<BalancePage />} />
-        <Route path="daily" element={<DailyPage />} />
-      </Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="balance" element={<BalancePage />} />
+          <Route path="daily" element={<DailyPage />} />
+          <Route path="pools" element={<PoolsPage />} />
+          <Route path="invite" element={<InvitePage />} />
+          <Route path="tasks" element={<TasksPage />} />
+        </Route>
+      </Routes>
+      <RefLinkWrap />
+    </>
   );
 }
 

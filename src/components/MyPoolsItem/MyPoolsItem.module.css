@@ -1,0 +1,29 @@
+.myPoolsListItem {
+  min-width: 100%;
+  border: 0.2px solid #23232e;
+  border-radius: 20px;
+  padding: 20px 17px;
+  background: var(--card-bg-color);
+  box-shadow: 0 2px 0 0 rgba(35, 35, 46, 0.99);
+  max-height: calc(100dvh - 337px);
+  overflow: scroll;
+}
+
+.myPoolsListItem:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.myPoolsListItem div:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.myPoolsHeading {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+}
+.myPoolsValue {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 700;
+}
