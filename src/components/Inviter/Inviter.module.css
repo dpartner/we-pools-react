@@ -1,0 +1,101 @@
+.invLinkBackdrop {
+  background: rgba(28, 28, 40, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  z-index: 999;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.invLinkBackdrop.shown {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.invLinkBackdrop.shown .invLinkWrap {
+  transform: translateY(0);
+}
+
+.invLinkWrap {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px 16px;
+  border-radius: 15px;
+  transform: translateY(100%);
+  transition: all 0.3s ease-in-out;
+}
+
+.invLinkWrap .invImg {
+  margin-bottom: 31px;
+}
+.invHeading {
+  font-weight: 700;
+  font-size: 21px;
+  letter-spacing: 0.01em;
+  text-align: left;
+  color: var(--bg-color);
+  margin-bottom: 20px;
+}
+.invDesc {
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  color: var(--bg-color);
+  max-width: 252px;
+  margin-bottom: 25px;
+}
+.invForm {
+  width: 100%;
+}
+
+.invInput {
+  width: 100%;
+  font-size: 14px;
+  padding: 14px 17px;
+  border: 0.5px solid #23232e;
+  border-radius: 15px;
+  outline: transparent;
+  margin-bottom: 150px;
+}
+.invInput:focus,
+.invInput:hover {
+  border: 1px solid var(--primary-color);
+}
+
+.invNotification {
+  border: 1px solid #5b5b73;
+  border-radius: 50px;
+  background-color: var(--card-bg-color);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: inline-block;
+  padding: 9px 20px;
+  transform: translate(-50%, -200%);
+  color: var(--approve-color);
+  transition: all 0.5s ease-in-out;
+}
+.invNotification.fail {
+  color: var(--disapprove-color);
+}
+
+.invNotification.shown {
+  transform: translate(-50%, 150%);
+}
+.primaryButtonInv {
+  font-weight: 500;
+  font-size: 16px;
+  padding: 15px 20px;
+  width: 100%;
+}

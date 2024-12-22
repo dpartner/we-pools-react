@@ -1,16 +1,22 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import s from "./AppBar.module.css";
 import clsx from "clsx";
 import { selectUser } from "../../redux/users/selectors";
+import { menuToggle } from "../../redux/users/slice";
 
 const AppBar = () => {
   const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+
+  function handleMenuOpen() {
+    dispatch(menuToggle());
+  }
 
   return (
     <header className={clsx("section", s.headerSection)}>
       <div className={clsx("container", s.headerContainer)}>
         <div className={clsx(s.headerMenuButtonWrap)}>
-          <button className={clsx(s.headerMenuButton)}>
+          <button className={clsx(s.headerMenuButton)} onClick={handleMenuOpen}>
             <span></span>
           </button>
         </div>

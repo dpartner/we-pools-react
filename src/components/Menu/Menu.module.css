@@ -1,0 +1,125 @@
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-color);
+  padding: 22px 16px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-100%);
+  transition: all 0.5s ease-in-out;
+}
+
+.menu.shown {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.menuHeading {
+  text-align: center;
+  margin-bottom: 33px;
+}
+
+.menuUserInfoWrap {
+  width: 100%;
+  padding: 12px 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  background-color: var(--card-bg-color);
+  border-radius: 15px;
+  margin-bottom: 52px;
+}
+
+.menuUserIconWrap,
+.menuSettingsItemIconWrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #313142;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.menuUserIconWrap img.hasPicture {
+  width: auto;
+  height: 100%;
+}
+
+.menuUserContent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.menuUserTitle {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+}
+
+.menuUserBalance {
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary-color);
+  text-transform: uppercase;
+}
+
+.menuSettingsList {
+  width: 100%;
+  padding: 14px 19px 14px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--card-bg-color);
+  border-radius: 15px;
+}
+.menuSettingsItem {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  background-color: var(--card-bg-color);
+}
+
+.menuSettingsItem:not(:first-child) {
+  padding-top: 10px;
+}
+
+.menuSettingsItem:not(:last-child) {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #23232e;
+}
+
+.menuSettingsItemHeading {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.menuSettingsItemButton {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  background-color: rgba(161, 161, 161, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+}
+
+.menuSettingsItemButton svg {
+  fill: var(--text-color);
+  pointer-events: none;
+  transition: all 0.7s ease-in-out;
+  transform: rotate(270deg);
+}

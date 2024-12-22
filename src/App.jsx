@@ -12,6 +12,7 @@ import PoolsPage from "./pages/PoolsPage/PoolsPage";
 import InvitePage from "./pages/InvitePage/InvitePage";
 import RefLinkWrap from "./components/refLinkWrap/refLinkWrap";
 import TasksPage from "./pages/TasksPage/TasksPage";
+import Inviter from "./components/Inviter/Inviter";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function App() {
         </Route>
       </Routes>
       <RefLinkWrap />
+      <Inviter />
     </>
   );
 }

@@ -125,6 +125,7 @@ const users = [
     email: "john.doe@example.com",
     balance: "23567",
     weBalance: "55000",
+    tonBalance: "55000",
     photoUrl: "img/user-photo.png",
     coins: [
       { code: "near", value: "4.25" },
@@ -137,6 +138,7 @@ const users = [
     email: "sydney.swe@example.com",
     balance: "12567",
     weBalance: "155000",
+    tonBalance: "55000",
     photoUrl: "img/user-photo.png",
     coins: [
       { code: "near", value: "4.25" },

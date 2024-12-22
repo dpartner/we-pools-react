@@ -18,6 +18,8 @@ import {
 } from "../../redux/balance/selectors";
 import { toggleEyeOpen, toggleHistoryOpen } from "../../redux/balance/slice";
 import BalanceHistoryList from "../../components/BalanceHistoryList/BalanceHistoryList";
+import Menu from "../../components/Menu/Menu";
+import { menuClose } from "../../redux/users/slice";
 
 const BalancePage = () => {
   const user = useSelector(selectUser);
@@ -31,6 +33,7 @@ const BalancePage = () => {
   const eyeOpen = useSelector(selectBalanceEyeOpen);
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(menuClose());
     dispatch(fetchBalanceTokensApi(user.id));
     dispatch(fetchBalanceHistoryApi(user.id));
   }, [dispatch, user.id]);
@@ -155,6 +158,7 @@ const BalancePage = () => {
               <BalanceHistoryList />
             </div>
           </section>
+          <Menu />
         </main>
       )}
     </>

@@ -21,6 +21,8 @@ import DailyUpgradesList from "../../components/DailyUpgradesList/DailyUpgradesL
 import DailyTasksList from "../../components/DailyTasksList/DailyTasksList";
 import useDelayedShow from "../../utils/useDelayedShow";
 import { initWeBalance } from "../../redux/daily/slice";
+import Menu from "../../components/Menu/Menu";
+import { menuClose } from "../../redux/users/slice";
 
 const DailyPage = () => {
   const user = useSelector(selectUser);
@@ -33,6 +35,7 @@ const DailyPage = () => {
 
   useEffect(() => {
     if (user.id) {
+      dispatch(menuClose());
       dispatch(fetchDailyUpgradesApi(user.id));
       dispatch(fetchDailyTasksApi(user.id));
       dispatch(fetchDailyWeBalanceApi(user.id));
@@ -157,6 +160,7 @@ const DailyPage = () => {
               </span>
             </div>
           </section>
+          <Menu />
         </main>
       )}
     </>

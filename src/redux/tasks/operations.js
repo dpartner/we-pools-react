@@ -6,8 +6,6 @@ export const fetchTasksListApi = createAsyncThunk(
   async (userId, thunkApi) => {
     try {
       const data = await fetchTaskList(userId);
-      console.log(data[0].tasks);
-
       return data[0].tasks;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
