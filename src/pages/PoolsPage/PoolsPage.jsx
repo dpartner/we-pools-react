@@ -11,13 +11,15 @@ import {
   selectPoolsWrapWidth,
   selectTranslateXMyPools,
 } from "../../redux/pools/selectors";
-import Loader from "../../components/Loader/Loader";
+// import Loader from "../../components/Loader/Loader";
 import useDelayedShow from "../../utils/useDelayedShow";
 import {
   setPoolsWrapWidth,
   setTranslateXMyPools,
 } from "../../redux/pools/slice";
 import MyPoolsList from "../../components/MyPoolsList/MyPoolsList";
+import { menuClose } from "../../redux/users/slice";
+import Menu from "../../components/Menu/Menu";
 
 const PoolsPage = () => {
   const dispatch = useDispatch();
@@ -30,6 +32,7 @@ const PoolsPage = () => {
   const poolsListWrapRef = useRef();
 
   useEffect(() => {
+    dispatch(menuClose());
     if (user.id) {
       dispatch(fetchWePoolsApi(user.id));
       dispatch(fetchMyPoolsApi(user.id));
@@ -41,53 +44,62 @@ const PoolsPage = () => {
 
   return (
     <>
-      {loading && !isError && <Loader />}
-      <main>
-        <section className={clsx("section", s.buttonSection)}>
-          <div className={clsx("container")}>
-            <div className={clsx(s.weImgWrap)}>
-              <img
-                className={clsx(isShown && s.shown)}
-                srcSet="../img/welcome@1x.png 1x, ../img/welcome@2x.png 2x"
-                src="../img/welcome@1x.png"
-                alt="welcome img"
-              />
+      {/* {loading && !isError && <Loader />} */}
+      {!loading && !isError && (
+        <main>
+          <section className={clsx("section", s.buttonSection)}>
+            <div className={clsx("container")}>
+              <div className={clsx(s.weImgWrap)}>
+                <img
+                  className={clsx(isShown && s.shown)}
+                  srcSet="../img/welcome@1x.png 1x, ../img/welcome@2x.png 2x"
+                  src="../img/welcome@1x.png"
+                  alt="welcome img"
+                />
+              </div>
+              <div className={clsx(s.weHeadingButtonWrap)}>
+                <button
+                  id="we-btn"
+                  className={clsx(
+                    s.weButton,
+                    translateXValue === 0 && s.active
+                  )}
+                  onClick={() => {
+                    dispatch(setTranslateXMyPools(0));
+                  }}
+                >
+                  WE Pools
+                </button>
+                <button
+                  id="my-btn"
+                  className={clsx(
+                    s.weButton,
+                    translateXValue !== 0 && s.active
+                  )}
+                  onClick={() => {
+                    dispatch(setTranslateXMyPools(Number(listWrapWidth)));
+                  }}
+                >
+                  My Pools
+                </button>
+              </div>
             </div>
-            <div className={clsx(s.weHeadingButtonWrap)}>
-              <button
-                id="we-btn"
-                className={clsx(s.weButton, translateXValue === 0 && s.active)}
-                onClick={() => {
-                  dispatch(setTranslateXMyPools(0));
-                }}
+          </section>
+          <section className={clsx("section", s.poolsSection)}>
+            <div className={clsx("container", s.poolsContainer)}>
+              <div
+                ref={poolsListWrapRef}
+                className={clsx(s.poolsListsWrap)}
+                style={{ transform: `translateX(-${translateXValue}px) ` }}
               >
-                WE Pools
-              </button>
-              <button
-                id="my-btn"
-                className={clsx(s.weButton, translateXValue !== 0 && s.active)}
-                onClick={() => {
-                  dispatch(setTranslateXMyPools(Number(listWrapWidth)));
-                }}
-              >
-                My Pools
-              </button>
+                <WePoolsList />
+                <MyPoolsList />
+              </div>
             </div>
-          </div>
-        </section>
-        <section className={clsx("section", s.poolsSection)}>
-          <div className={clsx("container", s.poolsContainer)}>
-            <div
-              ref={poolsListWrapRef}
-              className={clsx(s.poolsListsWrap)}
-              style={{ transform: `translateX(-${translateXValue}px) ` }}
-            >
-              <WePoolsList />
-              <MyPoolsList />
-            </div>
-          </div>
-        </section>
-      </main>
+          </section>
+          <Menu />
+        </main>
+      )}
     </>
   );
 };

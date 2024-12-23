@@ -7,6 +7,7 @@ const initialState = {
   error: null,
   menuOpen: false,
   inviterOpen: false,
+  isLogged: false,
 };
 
 const slice = createSlice({
@@ -18,6 +19,12 @@ const slice = createSlice({
     },
     menuClose(state) {
       state.menuOpen = false;
+    },
+    setInviter(state, action) {
+      state.inviterOpen = action.payload;
+    },
+    setLogged(state, action) {
+      state.isLogged = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -38,6 +45,6 @@ const slice = createSlice({
   },
 });
 
-export const { menuToggle, menuClose } = slice.actions;
+export const { menuToggle, menuClose, setInviter, setLogged } = slice.actions;
 
 export default slice.reducer;

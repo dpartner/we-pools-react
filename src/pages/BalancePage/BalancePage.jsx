@@ -8,7 +8,7 @@ import {
   fetchBalanceHistoryApi,
 } from "../../redux/balance/operations";
 import BalanceTokensList from "../../components/BalanceTokensList/BalanceTokensList";
-import Loader from "../../components/Loader/Loader";
+// import Loader from "../../components/Loader/Loader";
 import {
   selectBalanceError,
   selectBalanceEyeOpen,
@@ -29,7 +29,7 @@ const BalancePage = () => {
   const tokensWrap = useRef();
   const balanceTokensLoaded = useSelector(selectBalanceTokens);
 
-  useEffect(() => {}, [loading]);
+  // useEffect(() => {}, [loading]);
   const eyeOpen = useSelector(selectBalanceEyeOpen);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -64,7 +64,7 @@ const BalancePage = () => {
 
   return (
     <>
-      {loading && !isError && <Loader />}
+      {/* {loading && !isError && <Loader />} */}
       {!loading && !isError && (
         <main>
           <section

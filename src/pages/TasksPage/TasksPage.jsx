@@ -10,8 +10,10 @@ import {
   selectTasksListError,
   selectTasksListLoading,
 } from "../../redux/tasks/selectors";
-import Loader from "../../components/Loader/Loader";
+// import Loader from "../../components/Loader/Loader";
 import useDelayedShow from "../../utils/useDelayedShow";
+import { menuClose } from "../../redux/users/slice";
+import Menu from "../../components/Menu/Menu";
 
 const TasksPage = () => {
   const dispatch = useDispatch();
@@ -22,11 +24,12 @@ const TasksPage = () => {
   const isShown = useDelayedShow(!loading, 50);
 
   useEffect(() => {
+    dispatch(menuClose());
     dispatch(fetchTasksListApi(user.id));
   }, [dispatch, user]);
   return (
     <>
-      {loading && !isError && <Loader />}
+      {/* {loading && !isError && <Loader />} */}
       {!loading && !isError && (
         <main>
           {/* <!-- -------------------HEADING section---------------- --> */}
@@ -52,6 +55,7 @@ const TasksPage = () => {
               <TasksList />
             </div>
           </section>
+          <Menu />
         </main>
       )}
     </>

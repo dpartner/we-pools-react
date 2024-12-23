@@ -6,26 +6,33 @@ import { fetchFriendListApi } from "../../redux/invite/operations";
 import { selectUser } from "../../redux/users/selectors";
 import FriendList from "../../components/FriendList/FriendList";
 import {
+  selectInviteError,
   selectInviteFriendList,
   selectInviteLoadingFriendList,
 } from "../../redux/invite/selectors";
 import useDelayedShow from "../../utils/useDelayedShow";
 import { toogleRefLinkWrap } from "../../redux/invite/slice";
+import Menu from "../../components/Menu/Menu";
+import { menuClose } from "../../redux/users/slice";
+// import Loader from "../../components/Loader/Loader";
 
 const InvitePage = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const loading = useSelector(selectInviteLoadingFriendList);
+  const isError = useSelector(selectInviteError);
   const isShown = useDelayedShow(!loading, 50);
   const friendList = useSelector(selectInviteFriendList);
 
   useEffect(() => {
+    dispatch(menuClose());
     dispatch(fetchFriendListApi(user.id));
   }, [dispatch, user]);
 
   return (
     <>
-      {isShown && (
+      {/* {loading && !isError && <Loader />} */}
+      {!loading && !isError && (
         <main>
           <section className={clsx("section", s.hdSection, isShown && s.shown)}>
             <div className={clsx("container", s.hdContainer)}>
@@ -89,6 +96,7 @@ const InvitePage = () => {
               </div>
             </div>
           </section>
+          <Menu />
         </main>
       )}
     </>

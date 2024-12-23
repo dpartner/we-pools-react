@@ -1,12 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
 import s from "./AppBar.module.css";
 import clsx from "clsx";
-import { selectUser } from "../../redux/users/selectors";
+import { selectMenuToggle, selectUser } from "../../redux/users/selectors";
 import { menuToggle } from "../../redux/users/slice";
+import React, { useMemo } from "react";
 
 const AppBar = () => {
   const user = useSelector(selectUser);
+  const menuIsOpen = useSelector(selectMenuToggle);
   const dispatch = useDispatch();
+
+  const userId = useMemo(() => {
+    return user.id;
+  }, [user.id]);
+
+  const userPhoto = useMemo(() => {
+    return user.photoUrl;
+  }, [user.photoUrl]);
 
   function handleMenuOpen() {
     dispatch(menuToggle());
@@ -16,20 +26,23 @@ const AppBar = () => {
     <header className={clsx("section", s.headerSection)}>
       <div className={clsx("container", s.headerContainer)}>
         <div className={clsx(s.headerMenuButtonWrap)}>
-          <button className={clsx(s.headerMenuButton)} onClick={handleMenuOpen}>
+          <button
+            className={clsx(s.headerMenuButton, menuIsOpen && s.active)}
+            onClick={handleMenuOpen}
+          >
             <span></span>
           </button>
         </div>
         <div>
           <p className={clsx(s.headerUserId)}>
-            #user_<span>{user.id}</span>
+            #user_<span>{userId}</span>
           </p>
         </div>
         <div className={clsx(s.userIconWrap)}>
-          {user.photoUrl ? (
+          {userPhoto ? (
             <img
               className={s.hasPicture}
-              src={`../../../public/${user.photoUrl}`}
+              src={`../../../public/${userPhoto}`}
               alt=""
             />
           ) : (
@@ -41,4 +54,4 @@ const AppBar = () => {
   );
 };
 
-export default AppBar;
+export default React.memo(AppBar);

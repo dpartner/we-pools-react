@@ -1,10 +1,16 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import s from "./Menu.module.css";
 import clsx from "clsx";
 import { selectMenuToggle } from "../../redux/users/selectors";
+import { setInviter, setLogged } from "../../redux/users/slice";
 
 const Menu = () => {
   const menuToggle = useSelector(selectMenuToggle);
+  const dispatch = useDispatch();
+
+  function handleOpenMenuInviter() {
+    dispatch(setInviter(true));
+  }
 
   return (
     <div className={clsx(s.menu, menuToggle && s.shown)}>
@@ -47,6 +53,7 @@ const Menu = () => {
             type="button"
             className={clsx(s.menuSettingsItemButton)}
             id="inv-btn"
+            onClick={handleOpenMenuInviter}
           >
             <svg width="9" height="9">
               <use href="../img/svg/symbol-defs.svg#icon-down-arrow" />
@@ -58,15 +65,17 @@ const Menu = () => {
             <img src="../img/svg/logout.svg" alt="" />
           </div>
           <h3 className={clsx(s.menuSettingsItemHeading)}>Logout</h3>
-          <a
-            href="../../index.html"
+          <button
             className={clsx(s.menuSettingsItemButton)}
             id="logout-btn"
+            onClick={() => {
+              dispatch(setLogged(false));
+            }}
           >
             <svg width="9" height="9">
               <use href="../img/svg/symbol-defs.svg#icon-down-arrow" />
             </svg>
-          </a>
+          </button>
         </li>
       </ul>
     </div>

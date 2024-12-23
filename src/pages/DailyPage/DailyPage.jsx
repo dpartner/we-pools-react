@@ -16,7 +16,7 @@ import {
   selectDailyWeBalanceColor,
   selectDailyWeBalanceValue,
 } from "../../redux/daily/selectors";
-import Loader from "../../components/Loader/Loader";
+// import Loader from "../../components/Loader/Loader";
 import DailyUpgradesList from "../../components/DailyUpgradesList/DailyUpgradesList";
 import DailyTasksList from "../../components/DailyTasksList/DailyTasksList";
 import useDelayedShow from "../../utils/useDelayedShow";
@@ -61,7 +61,7 @@ const DailyPage = () => {
 
   return (
     <>
-      {loading && !isError && <Loader />}
+      {/* {loading && !isError && <Loader />} */}
       {!loading && !isError && (
         <main>
           {/* <!-- -------------------TG section---------------- --> */}
