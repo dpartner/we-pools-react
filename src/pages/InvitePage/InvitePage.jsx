@@ -13,7 +13,7 @@ import {
 import useDelayedShow from "../../utils/useDelayedShow";
 import { toogleRefLinkWrap } from "../../redux/invite/slice";
 import Menu from "../../components/Menu/Menu";
-import { menuClose } from "../../redux/users/slice";
+import { menuClose } from "../../redux/utils/slice";
 // import Loader from "../../components/Loader/Loader";
 
 const InvitePage = () => {

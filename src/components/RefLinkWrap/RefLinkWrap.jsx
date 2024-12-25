@@ -3,7 +3,7 @@ import s from "./RefLinkWrap.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectToogleInviteLinkWrap } from "../../redux/invite/selectors";
 import { toogleRefLinkWrap } from "../../redux/invite/slice";
-import { useRef, useState } from "react";
+import { setNotification } from "../../redux/utils/slice";
 
 const RefLinkWrap = () => {
   const isShown = useSelector(selectToogleInviteLinkWrap);
@@ -31,22 +31,23 @@ const RefLinkWrap = () => {
     }
   }
 
-  const notifRef = useRef();
-  const [shownNotif, setShownNotif] = useState(false);
   async function handleCopyButton() {
     //-------paste here referal link for copy
     let link = "Your ref Link";
 
-    setShownNotif(true);
+    dispatch(
+      setNotification({
+        message: "Referal link copied",
+        isApprove: true,
+        shown: true,
+      })
+    );
     await navigator.clipboard
       .writeText(link)
       .then(() => {})
       .catch((err) => {
         console.log("Something went wrong", err);
       });
-    setTimeout(() => {
-      setShownNotif(false);
-    }, 3000);
   }
 
   return (
@@ -75,12 +76,6 @@ const RefLinkWrap = () => {
           Get referral link
         </button>
       </div>
-      <p
-        className={clsx(s.refNotification, shownNotif && s.shown)}
-        ref={notifRef}
-      >
-        Referal link copied
-      </p>
     </div>
   );
 };

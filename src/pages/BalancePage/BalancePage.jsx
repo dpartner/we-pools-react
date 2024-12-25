@@ -19,7 +19,7 @@ import {
 import { toggleEyeOpen, toggleHistoryOpen } from "../../redux/balance/slice";
 import BalanceHistoryList from "../../components/BalanceHistoryList/BalanceHistoryList";
 import Menu from "../../components/Menu/Menu";
-import { menuClose } from "../../redux/users/slice";
+import { menuClose } from "../../redux/utils/slice";
 
 const BalancePage = () => {
   const user = useSelector(selectUser);
@@ -53,13 +53,13 @@ const BalancePage = () => {
         top: 40,
         behavior: "smooth",
       });
-    }, 2000);
+    }, 1000);
     setTimeout(() => {
       tokensWrap.current.scroll({
         top: 0,
         behavior: "smooth",
       });
-    }, 2500);
+    }, 1500);
   }
 
   return (

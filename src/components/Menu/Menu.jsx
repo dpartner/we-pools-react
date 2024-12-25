@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import s from "./Menu.module.css";
 import clsx from "clsx";
-import { selectMenuToggle } from "../../redux/users/selectors";
-import { setInviter, setLogged } from "../../redux/users/slice";
+import { setInviter } from "../../redux/utils/slice";
+import { setLogged } from "../../redux/users/slice";
+import { selectMenuToggle } from "../../redux/utils/selectors";
 
 const Menu = () => {
   const menuToggle = useSelector(selectMenuToggle);

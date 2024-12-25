@@ -24,7 +24,7 @@ export async function fetchWePools(userId) {
   // userId, для того, чтобы подтягивать данные твоего юзера
   await delay(50); //потом удалишь
   // data = await fetch('api'); Запрос на твой api  за данными
-  const data = pools;
+  const data = wePools;
   return data;
 }
 export async function fetchMyPools(userId) {
@@ -50,6 +50,7 @@ export async function fetchDailyTasks(userId) {
 
 export async function fetchFriendList() {
   // data = await fetch('api'); Запрос на твой api  за данными
+  await delay(50); //потом удалишь
   const data = friendList;
   return data;
 }
@@ -231,7 +232,7 @@ const history = [
   },
 ];
 
-const pools = [
+const myPools = [
   {
     id: 1,
     coinName: "Toncoin",
@@ -338,25 +339,142 @@ const pools = [
   },
 ];
 
-const myPools = [
-  // {
-  //   id: 1,
-  //   coinName: "Toncoin",
-  //   coinCode: "TON",
-  //   symbolName: "tonkoin.png",
-  //   totalStaked: "9900",
-  //   stakedAmount: "839",
-  //   claimableAmount: "16",
-  // },
-  // {
-  //   id: 2,
-  //   coinName: "Toncoin",
-  //   coinCode: "TON",
-  //   symbolName: "tonkoin.png",
-  //   totalStaked: "9900",
-  //   stakedAmount: "839",
-  //   claimableAmount: "16",
-  // },
+const wePools = [
+  {
+    id: 1,
+    coinName: "DOGS",
+    coinCode: "DOGS",
+    symbolName: "dogs.png",
+    aprValue: "7",
+    status: "disapprove",
+    days: "14",
+    deposit: {
+      min: "0.01",
+      max: "10",
+    },
+    estIncome: "0.0",
+    balance: "0.16",
+  },
+  {
+    id: 2,
+    coinName: "DOGS",
+    coinCode: "DOGS",
+    symbolName: "dogs.png",
+    aprValue: "7",
+    status: "approve",
+    days: "30",
+    deposit: {
+      min: "0.05",
+      max: "15",
+    },
+    estIncome: "0.1",
+    balance: "0.25",
+  },
+  {
+    id: 3,
+    coinName: "DOGS",
+    coinCode: "DOGS",
+    symbolName: "dogs.png",
+    aprValue: "7",
+    status: "pending",
+    days: "7",
+    deposit: {
+      min: "0.02",
+      max: "20",
+    },
+    estIncome: "0.05",
+    balance: "0.50",
+  },
+  {
+    id: 4,
+    coinName: "DOGS",
+    coinCode: "DOGS",
+    symbolName: "dogs.png",
+    aprValue: "7",
+    status: "approve",
+    days: "14",
+    deposit: {
+      min: "0.01",
+      max: "10",
+    },
+    estIncome: "0.0",
+    balance: "0.30",
+  },
+  {
+    id: 5,
+    coinName: "DOGS",
+    coinCode: "DOGS",
+    symbolName: "dogs.png",
+    aprValue: "7",
+    status: "disapprove",
+    days: "21",
+    deposit: {
+      min: "0.03",
+      max: "12",
+    },
+    estIncome: "0.08",
+    balance: "0.40",
+  },
+  {
+    id: 6,
+    coinName: "DOGS",
+    coinCode: "DOGS",
+    symbolName: "dogs.png",
+    aprValue: "7",
+    status: "approve",
+    days: "10",
+    deposit: {
+      min: "0.01",
+      max: "8",
+    },
+    estIncome: "0.02",
+    balance: "0.20",
+  },
+  {
+    id: 7,
+    coinName: "DOGS",
+    coinCode: "DOGS",
+    symbolName: "dogs.png",
+    aprValue: "7",
+    status: "pending",
+    days: "14",
+    deposit: {
+      min: "0.01",
+      max: "10",
+    },
+    estIncome: "0.0",
+    balance: "0.15",
+  },
+  {
+    id: 8,
+    coinName: "DOGS",
+    coinCode: "DOGS",
+    symbolName: "dogs.png",
+    aprValue: "7",
+    status: "approve",
+    days: "28",
+    deposit: {
+      min: "0.02",
+      max: "18",
+    },
+    estIncome: "0.12",
+    balance: "0.60",
+  },
+  {
+    id: 9,
+    coinName: "DOGS",
+    coinCode: "DOGS",
+    symbolName: "dogs.png",
+    aprValue: "7",
+    status: "disapprove",
+    days: "14",
+    deposit: {
+      min: "0.01",
+      max: "10",
+    },
+    estIncome: "0.0",
+    balance: "0.10",
+  },
 ];
 
 const dailyUpgrade = [

@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import s from "./WePoolsItem.module.css";
 import clsx from "clsx";
+import { useDispatch } from "react-redux";
+import { setNotification } from "../../redux/utils/slice";
 
 const WePoolsItem = ({
   coinCode,
@@ -8,13 +10,40 @@ const WePoolsItem = ({
   aprValue,
   status,
   days,
-  amount,
-  claimableAmount,
-  dailyInc,
-  expDate,
+  deposit,
+  estIncome,
+  balance,
 }) => {
   const poolItemRef = useRef();
   const [showPool, setShowPool] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const dispatch = useDispatch();
+
+  function handleMaxButton() {
+    setInputValue(deposit.max);
+  }
+
+  function inputSubmit(e) {
+    e.preventDefault();
+    if (inputValue.trim() === "") {
+      dispatch(
+        setNotification({
+          message: "Please enter a valid amount",
+          isApprove: false,
+          shown: true,
+        })
+      );
+    } else {
+      dispatch(
+        setNotification({
+          message: "Transaction successful",
+          isApprove: true,
+          shown: true,
+        })
+      );
+    }
+    setInputValue("");
+  }
 
   return (
     <li
@@ -56,79 +85,60 @@ const WePoolsItem = ({
       </div>
       <div className={clsx(s.poolsItemDetailsWrap)}>
         <div className={clsx(s.poolsItemDetailsHeading)}>
-          <p>Amount staked:</p>
-          <span className={clsx(s.poolsItemDetailsValue)}>{amount}</span>
-          <span className={clsx(s.poolsItemDetailsCode)}>{coinCode}</span>
-        </div>
-        <div className={clsx(s.poolsItemDetailsHeading)}>
-          <p>Claimable amount:</p>
+          <p>Deposit Limit:</p>
           <span className={clsx(s.poolsItemDetailsValue)}>
-            {claimableAmount}
+            {deposit.min} - {deposit.max}
           </span>
           <span className={clsx(s.poolsItemDetailsCode)}>{coinCode}</span>
         </div>
         <div className={clsx(s.poolsItemDetailsHeading)}>
-          <p>Daily income:</p>
-          <span className={clsx(s.poolsItemDetailsValue)}>~{dailyInc}</span>
+          <p>Estimated Income:</p>
+          <span className={clsx(s.poolsItemDetailsValue)}>{estIncome}</span>
           <span className={clsx(s.poolsItemDetailsCode)}>{coinCode}</span>
         </div>
         <div className={clsx(s.poolsItemDetailsHeading)}>
-          <p>Expiration date:</p>
-          <span className={clsx(s.poolsItemDetailsValue)}>{expDate}</span>
+          <p>Your Balance:</p>
+          <span className={clsx(s.poolsItemDetailsValue)}>~{balance}</span>
+          <span className={clsx(s.poolsItemDetailsCode)}>{coinCode}</span>
         </div>
-        <div className={clsx(s.poolsItemDetailsButtonWrap)}>
+        <form className={clsx(s.poolsInputForm)} onSubmit={inputSubmit}>
+          <input
+            className={clsx(s.poolsItemDetailsInput)}
+            type="number"
+            placeholder="Enter Amount"
+            value={inputValue}
+            onChange={(e) => {
+              setInputValue(e.target.value);
+            }}
+          />
           <button
             type="button"
-            className={clsx(
-              "primaryButton",
-              s.deactive,
-              s.poolsItemDetailsButton
-            )}
+            className={clsx(s.poolsItemDetailsInputMaxButton)}
+            data-action="max-value"
+            onClick={handleMaxButton}
           >
-            Unstake
+            Max
           </button>
-          <button
-            type="submit"
-            className={clsx("primaryButton", s.poolsItemDetailsButton)}
-          >
-            Claim
-          </button>
-        </div>
-        {/* <form className={clsx(s.poolsInputForm)} action="">
-                        <input
-                          className={clsx(s.poolsItemDetailsInput)}
-                          type="number"
-                          placeholder="Enter Amount"
-                        />
-                        <button
-                          type="button"
-                          className={clsx(s.poolsItemDetailsInputMaxButton)}
-                          data-action="max-value"
-                        >
-                          Max
-                        </button>
-                        <div className={clsx(s.poolsItemDetailsButtonWrap)}>
-                          <button
-                            type="button"
-                            className={clsx(
-                              "primaryButton",
-                              s.deactive,
-                              s.poolsItemDetailsButton
-                            )}
-                          >
-                            Info
-                          </button>
-                          <button
-                            type="submit"
-                            className={clsx(
-                              "primaryButton",
-                              s.poolsItemDetailsButton
-                            )}
-                          >
-                            Invest
-                          </button>
-                        </div>
-                      </form> */}
+          <div className={clsx(s.poolsItemDetailsButtonWrap)}>
+            <button
+              type="button"
+              className={clsx(
+                "primaryButton",
+                s.deactive,
+                s.poolsItemDetailsButton
+              )}
+              disabled
+            >
+              Info
+            </button>
+            <button
+              type="submit"
+              className={clsx("primaryButton", s.poolsItemDetailsButton)}
+            >
+              Stake
+            </button>
+          </div>
+        </form>
       </div>
     </li>
   );

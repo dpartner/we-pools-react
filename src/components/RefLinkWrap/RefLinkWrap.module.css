@@ -64,21 +64,3 @@
   padding: 15px 20px;
   width: 100%;
 }
-
-.refNotification {
-  border: 1px solid #5b5b73;
-  border-radius: 50px;
-  background-color: var(--card-bg-color);
-  position: absolute;
-  top: 0;
-  left: 50%;
-  display: inline-block;
-  padding: 9px 20px;
-  transform: translate(-50%, -200%);
-  color: var(--approve-color);
-  transition: all 0.5s ease-in-out;
-}
-
-.refNotification.shown {
-  transform: translate(-50%, 150%);
-}

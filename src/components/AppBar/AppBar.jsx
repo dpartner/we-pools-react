@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import s from "./AppBar.module.css";
 import clsx from "clsx";
-import { selectMenuToggle, selectUser } from "../../redux/users/selectors";
-import { menuToggle } from "../../redux/users/slice";
+import { selectUser } from "../../redux/users/selectors";
 import React, { useMemo } from "react";
+import { selectMenuToggle } from "../../redux/utils/selectors";
+import { menuToggle } from "../../redux/utils/slice";
 
 const AppBar = () => {
   const user = useSelector(selectUser);

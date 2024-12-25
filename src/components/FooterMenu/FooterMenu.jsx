@@ -4,12 +4,17 @@ import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleHistoryOpen } from "../../redux/balance/slice";
 import { selectBalanceHistoryOpen } from "../../redux/balance/selectors";
+import React, { useMemo } from "react";
 
 const FooterMenu = () => {
   const dispatch = useDispatch();
   const historyOpen = useSelector(selectBalanceHistoryOpen);
   const location = useLocation();
   const currentPath = location.pathname.replace("/", "");
+
+  const history = useMemo(() => {
+    return historyOpen;
+  }, [historyOpen]);
 
   return (
     <footer className={clsx(s.footer)}>
@@ -25,9 +30,9 @@ const FooterMenu = () => {
               >
                 <NavLink
                   to="/balance"
-                  className={clsx(s.footerButtonLink, s.closeHistory)}
+                  className={clsx(s.footerButtonLink)}
                   onClick={() => {
-                    historyOpen && dispatch(toggleHistoryOpen());
+                    history && dispatch(toggleHistoryOpen());
                   }}
                 >
                   <svg width="25" height="25">
@@ -96,4 +101,4 @@ const FooterMenu = () => {
   );
 };
 
-export default FooterMenu;
+export default React.memo(FooterMenu);

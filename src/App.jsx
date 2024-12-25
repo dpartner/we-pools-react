@@ -13,11 +13,12 @@ import { fetchUserApi } from "./redux/users/operations";
 import RefLinkWrap from "./components/refLinkWrap/refLinkWrap";
 // import TasksPage from "./pages/TasksPage/TasksPage";
 import Inviter from "./components/Inviter/Inviter";
-import { selectMenuToggle } from "./redux/users/selectors";
 import { PrivateRoute } from "./components/PrivateRoute";
 import Loader from "./components/Loader/Loader";
-// import LoginPage from "./pages/LoginPage/LoginPage";
-const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+import LoginPage from "./pages/LoginPage/LoginPage";
+import Notification from "./components/Notification/Notification";
+import { selectMenuToggle } from "./redux/utils/selectors";
+// const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
 const BalancePage = lazy(() => import("./pages/BalancePage/BalancePage"));
 const DailyPage = lazy(() => import("./pages/DailyPage/DailyPage"));
 const PoolsPage = lazy(() => import("./pages/PoolsPage/PoolsPage"));
@@ -39,6 +40,12 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<Layout />}>
+          <Route
+            index
+            element={
+              <PrivateRoute component={<BalancePage />} redirectTo="/login" />
+            }
+          />
           <Route
             path="balance"
             element={
@@ -73,6 +80,7 @@ function App() {
       </Routes>
       {location.pathname === "/invite" && <RefLinkWrap />}
       {menuIsOpen && <Inviter />}
+      <Notification />
     </Suspense>
   );
 }

@@ -120,7 +120,6 @@ const slice = createSlice({
       })
       .addCase(deleteDailyTaskApi.fulfilled, (state, action) => {
         state.tasks = state.tasks.filter((task) => task.id !== action.payload);
-        console.log(state.tasks);
 
         // state.loading.upgrades = false;
       })

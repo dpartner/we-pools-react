@@ -1,0 +1,25 @@
+.notification {
+  border: 1px solid #5b5b73;
+  border-radius: 50px;
+  background-color: var(--card-bg-color);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: block;
+  padding: 9px 20px;
+  transform: translate(-50%, -200%);
+  color: var(--approve-color);
+  transition: all 0.5s ease-in-out;
+  text-align: center;
+  min-width: max-content;
+  z-index: 999;
+}
+
+.notification.disapprove {
+  color: var(--disapprove-color);
+}
+
+.notification.shown {
+  transform: translate(-50%, 50%);
+  /* transition: all 0.5s ease-in-out; */
+}

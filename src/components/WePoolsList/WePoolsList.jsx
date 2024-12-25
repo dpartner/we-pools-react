@@ -14,9 +14,13 @@ const WePoolsList = () => {
   const isShown = useDelayedShow(!loading, 50);
   return (
     <ul className={clsx(s.poolsList, isShown && s.shown)}>
-      {wePools.map((pool) => {
-        return <WePoolsItem key={pool.id} {...pool} />;
-      })}
+      {wePools.length !== 0 ? (
+        wePools.map((pool) => {
+          return <WePoolsItem key={pool.id} {...pool} />;
+        })
+      ) : (
+        <h2 style={{ textAlign: "center" }}>You don`t have any pools.</h2>
+      )}
     </ul>
   );
 };

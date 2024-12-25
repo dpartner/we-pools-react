@@ -5,8 +5,6 @@ const initialState = {
   item: {},
   loading: false,
   error: null,
-  menuOpen: false,
-  inviterOpen: false,
   isLogged: false,
 };
 
@@ -14,15 +12,6 @@ const slice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    menuToggle(state) {
-      state.menuOpen = !state.menuOpen;
-    },
-    menuClose(state) {
-      state.menuOpen = false;
-    },
-    setInviter(state, action) {
-      state.inviterOpen = action.payload;
-    },
     setLogged(state, action) {
       state.isLogged = action.payload;
     },
@@ -45,6 +34,6 @@ const slice = createSlice({
   },
 });
 
-export const { menuToggle, menuClose, setInviter, setLogged } = slice.actions;
+export const { setLogged } = slice.actions;
 
 export default slice.reducer;

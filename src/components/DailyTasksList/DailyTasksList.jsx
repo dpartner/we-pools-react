@@ -36,9 +36,6 @@ const DailyTasksList = () => {
 
       const targetCoordinateX = -(left - weBalanceCordinate.left + 35);
       const targetCoordinateY = -(top - weBalanceCordinate.top - 12);
-      console.log(weBalanceCordinate);
-
-      console.log("target", targetCoordinateY, targetCoordinateX);
       const buttonId = Number(e.target.id);
 
       const notifText = tasks.find((task) => task.id === buttonId).buttonName;

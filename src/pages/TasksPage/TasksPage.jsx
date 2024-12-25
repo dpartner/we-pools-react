@@ -12,8 +12,8 @@ import {
 } from "../../redux/tasks/selectors";
 // import Loader from "../../components/Loader/Loader";
 import useDelayedShow from "../../utils/useDelayedShow";
-import { menuClose } from "../../redux/users/slice";
 import Menu from "../../components/Menu/Menu";
+import { menuClose } from "../../redux/utils/slice";
 
 const TasksPage = () => {
   const dispatch = useDispatch();

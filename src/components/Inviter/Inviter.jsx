@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import s from "./Inviter.module.css";
 import clsx from "clsx";
-import { selectInviterToggle } from "../../redux/users/selectors";
-import { setInviter } from "../../redux/users/slice";
 import useDelayedShow from "../../utils/useDelayedShow";
-import { useRef, useState } from "react";
+import { setInviter, setNotification } from "../../redux/utils/slice";
+import { selectInviterToggle } from "../../redux/utils/selectors";
 
 const Inviter = () => {
   const inviterIsOpen = useSelector(selectInviterToggle);
@@ -32,28 +31,30 @@ const Inviter = () => {
     if (touchendY > touchstartY) handleCloseInviter();
   }
 
-  const notifRef = useRef();
-  const [failNotif, setFailNotif] = useState(false);
-  const [notifShown, setNotifShown] = useState(false);
-
   function handleFormSubmit(e) {
     e.preventDefault();
     if (e.target.elements.inputLink.value.trim() !== "") {
-      setFailNotif(false);
-      setNotifShown(true);
+      dispatch(
+        setNotification({
+          message: "Recover Done!",
+          isApprove: true,
+          shown: true,
+        })
+      );
       e.target.elements.inputLink.value = "";
       setTimeout(() => {
         handleCloseInviter();
       }, 2000);
     } else {
-      setFailNotif(true);
-      setNotifShown(true);
+      dispatch(
+        setNotification({
+          message: "Empty value",
+          isApprove: false,
+          shown: true,
+        })
+      );
     }
     e.target.reset();
-
-    setTimeout(() => {
-      setNotifShown(false);
-    }, 3000);
   }
 
   return (
@@ -82,7 +83,7 @@ const Inviter = () => {
               </button>
             </form>
           </div>
-          <p
+          {/* <p
             ref={notifRef}
             className={clsx(
               s.invNotification,
@@ -91,7 +92,7 @@ const Inviter = () => {
             )}
           >
             {failNotif ? "Empty value" : "Recover Done!"}
-          </p>
+          </p> */}
         </div>
       }
     </>

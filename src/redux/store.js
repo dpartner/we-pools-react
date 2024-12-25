@@ -5,6 +5,7 @@ import dailyReducer from "./daily/slice";
 import poolsReducer from "./pools/slice";
 import inviteReducer from "./invite/slice";
 import tasksReducer from "./tasks/slice";
+import utilsReducer from "./utils/slice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     pools: poolsReducer,
     invite: inviteReducer,
     tasks: tasksReducer,
+    utils: utilsReducer,
   },
 });

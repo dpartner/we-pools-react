@@ -29,12 +29,12 @@ const LoginPage = () => {
     <main>
       <section className={clsx("section", s.sectionWelcome)}>
         <div className={clsx("container", s.containerWelcome)}>
-          {/* <h1 className={clsx(s.welcomeHeading)}>We pools</h1> */}
-          <img
+          <h1 className={clsx(s.welcomeHeading)}>We pools</h1>
+          {/* <img
             className={clsx(s.welcomeLogo)}
             src="../../../public/img/welcome-logo.svg"
             alt="welcome-logo"
-          />
+          /> */}
           <div className={clsx(s.imgWrap, pageLoaded && s.shown)}>
             <img
               srcSet="../../../public/img/welcome@1x.png 1x, ../../../public/img/welcome@2x.png 2x"

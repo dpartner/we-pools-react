@@ -12,17 +12,17 @@ import {
   selectDailyError,
   selectDailyPageLoading,
   selectDailyTaskNotif,
-  selectDailyUpgradeNotif,
+  // selectDailyUpgradeNotif,
   selectDailyWeBalanceColor,
   selectDailyWeBalanceValue,
 } from "../../redux/daily/selectors";
 // import Loader from "../../components/Loader/Loader";
-import DailyUpgradesList from "../../components/DailyUpgradesList/DailyUpgradesList";
+// import DailyUpgradesList from "../../components/DailyUpgradesList/DailyUpgradesList";
 import DailyTasksList from "../../components/DailyTasksList/DailyTasksList";
 import useDelayedShow from "../../utils/useDelayedShow";
 import { initWeBalance } from "../../redux/daily/slice";
 import Menu from "../../components/Menu/Menu";
-import { menuClose } from "../../redux/users/slice";
+import { menuClose } from "../../redux/utils/slice";
 
 const DailyPage = () => {
   const user = useSelector(selectUser);
@@ -44,10 +44,10 @@ const DailyPage = () => {
 
   //Animations-->
   const weBalanceValueRef = useRef();
-  const upgradeNotifRef = useRef();
+  // const upgradeNotifRef = useRef();
   const taskNotifRef = useRef();
 
-  const upgradeNotif = useSelector(selectDailyUpgradeNotif);
+  // const upgradeNotif = useSelector(selectDailyUpgradeNotif);
   const taskNotif = useSelector(selectDailyTaskNotif);
 
   useEffect(() => {
@@ -122,7 +122,7 @@ const DailyPage = () => {
             </div>
           </section>
           {/* <!-- -------------------UPGRADE section---------------- --> */}
-          <section className={clsx("section", s.upgradeSection)}>
+          {/* <section className={clsx("section", s.upgradeSection)}>
             <div className={clsx("container", s.containerUpgrade)}>
               <h3 className={clsx(s.upHeading)}>Upgrade</h3>
               <DailyUpgradesList />
@@ -140,7 +140,7 @@ const DailyPage = () => {
                 Upgraded
               </span>
             </div>
-          </section>
+          </section> */}
           {/* <!-- -------------------TASKS section---------------- --> */}
           <section className={clsx("section", s.tskSection)}>
             <div className={clsx("container")}>

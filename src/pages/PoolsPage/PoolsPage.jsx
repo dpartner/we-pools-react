@@ -18,8 +18,8 @@ import {
   setTranslateXMyPools,
 } from "../../redux/pools/slice";
 import MyPoolsList from "../../components/MyPoolsList/MyPoolsList";
-import { menuClose } from "../../redux/users/slice";
 import Menu from "../../components/Menu/Menu";
+import { menuClose } from "../../redux/utils/slice";
 
 const PoolsPage = () => {
   const dispatch = useDispatch();

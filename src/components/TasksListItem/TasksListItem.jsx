@@ -1,24 +1,51 @@
+import { useDispatch } from "react-redux";
 import s from "./TasksListItem.module.css";
 import clsx from "clsx";
+import { setNotification } from "../../redux/utils/slice";
+import { useEffect, useState } from "react";
 
 const TasksListItem = ({ title, value, buttonName, status }) => {
-  let buttonContent = "";
-  switch (status) {
-    case "active":
-      buttonContent = buttonName;
-      break;
-    case "rejected":
-      buttonContent = (
-        <img src="../../img/svg/rejected-task.svg" alt="rejected" />
+  const dispatch = useDispatch();
+  const [buttonContent, setButtonContent] = useState("");
+  const [isActive, setIsActive] = useState(true);
+
+  useEffect(() => {
+    switch (status) {
+      case "active":
+        setButtonContent(buttonName);
+        setIsActive(true);
+        break;
+      case "rejected":
+        setButtonContent(
+          <img src="../../img/svg/rejected-task.svg" alt="rejected" />
+        );
+        setIsActive(false);
+        break;
+      case "done":
+        setButtonContent(<img src="../../img/svg/done-task.svg" alt="done" />);
+        setIsActive(false);
+        break;
+      default:
+        setButtonContent(buttonName);
+        setIsActive(true);
+        break;
+    }
+  }, [buttonName, status]);
+
+  function handleButton() {
+    if (buttonName === "Verify") {
+      dispatch(
+        setNotification({
+          message: "Verified",
+          isApprove: true,
+          shown: true,
+        })
       );
-      break;
-    case "done":
-      buttonContent = <img src="../../img/svg/done-task.svg" alt="done" />;
-      break;
-    default:
-      buttonContent = buttonName;
-      break;
+      setButtonContent(<img src="../../img/svg/done-task.svg" alt="done" />);
+      setIsActive(false);
+    }
   }
+
   return (
     <li className={clsx(s.tListItem)}>
       <div className={clsx("userIconWrap", s.userIconWrapT)}>
@@ -29,7 +56,10 @@ const TasksListItem = ({ title, value, buttonName, status }) => {
           <h2 className={clsx(s.tTitle)}>{title}</h2>
           <p className={clsx(s.tBalance)}>+{value} WE</p>
         </div>
-        <button className={clsx(s.tItemBtn, status !== "active" && s.noActive)}>
+        <button
+          className={clsx(s.tItemBtn, !isActive && s.noActive)}
+          onClick={handleButton}
+        >
           {buttonContent}
         </button>
       </div>
